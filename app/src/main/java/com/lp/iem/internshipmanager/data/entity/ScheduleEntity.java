@@ -1,6 +1,8 @@
 package com.lp.iem.internshipmanager.data.entity;
 
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
@@ -12,14 +14,17 @@ import java.util.List;
 public class ScheduleEntity extends BaseModel {
     @Column
     @PrimaryKey
-    String id;
+    public String id;
 
     @Column
-    String label;
+    public String label;
 
     @Column
-    String description;
+    public String description;
 
     @Column
-    Date date;
+    public Date date;
+
+    @ForeignKey
+    public Student student;
 }

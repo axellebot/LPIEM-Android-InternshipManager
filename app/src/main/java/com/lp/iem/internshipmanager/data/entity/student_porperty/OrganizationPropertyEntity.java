@@ -12,11 +12,11 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public class OrganizationPropertyEntity extends BaseModel {
     @Column
     @PrimaryKey
-    String id;
+    public String id;
 
     @Column
-    String name;
+    public String name;
 
     @ForeignKey
-    StudentEntity student;
+    public StudentEntity student;
 }

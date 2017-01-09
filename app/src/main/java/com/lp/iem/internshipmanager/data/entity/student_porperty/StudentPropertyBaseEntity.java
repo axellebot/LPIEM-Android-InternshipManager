@@ -10,14 +10,14 @@ import com.raizlabs.android.dbflow.structure.BaseModel;
 public abstract class StudentPropertyBaseEntity extends BaseModel {
     @Column
     @PrimaryKey
-    String id;
+    public String id;
 
     @Column
-    String label;
+    public String label;
 
     @Column
-    String value;
+    public String value;
 
     @ForeignKey
-    StudentEntity student;
+    public StudentEntity student;
 }

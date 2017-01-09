@@ -14,14 +14,14 @@ import java.util.List;
 public class FileEntity extends BaseModel {
     @Column
     @PrimaryKey
-    String id;
+    public String id;
 
     @Column
-    String filePath;
+    public String filePath;
 
     @Column
-    String description;
+    public String description;
 
     @ForeignKey
-    StudentEntity student;
+    public StudentEntity student;
 }

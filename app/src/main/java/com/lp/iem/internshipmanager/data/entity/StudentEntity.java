@@ -23,16 +23,16 @@ import java.util.List;
 public class StudentEntity extends BaseModel {
     @Column
     @PrimaryKey
-    String uid;
+    public String id;
 
     @Column
-    String fname;
+    public String fname;
 
     @Column
-    String lname;
+    public String lname;
 
     @Column
-    String notes;
+    public String notes;
 
     List<AddressPropertyEntity> addressList;
     List<EmailPropertyEntity> emailList;
@@ -40,6 +40,7 @@ public class StudentEntity extends BaseModel {
     List<WebsitePropertyEntity> websiteList;
     List<FileEntity> fileList;
     List<OrganizationPropertyEntity> organizationList;
+    List<ScheduleEntity> scheduleList;
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "addressList")
     public List<AddressPropertyEntity> getAddressList() {
@@ -97,7 +98,7 @@ public class StudentEntity extends BaseModel {
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "organizationList")
-    public List<OrganizationPropertyEntity> organizationList() {
+    public List<OrganizationPropertyEntity> getOrganizationList() {
         if (organizationList == null || organizationList.isEmpty()) {
             organizationList = SQLite.select()
                     .from(OrganizationPropertyEntity.class)
@@ -105,5 +106,16 @@ public class StudentEntity extends BaseModel {
                     .queryList();
         }
         return organizationList;
+    }
+
+    @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "scheduleList")
+    public List<ScheduleEntity> getScheduleList() {
+        if (scheduleList == null || scheduleList.isEmpty()) {
+            scheduleList = SQLite.select()
+                    .from(OrganizationPropertyEntity.class)
+                    .where(ScheduleEntity_Table.student_uid.eq(uid))
+                    .queryList();
+        }
+        return scheduleList;
     }
 }
