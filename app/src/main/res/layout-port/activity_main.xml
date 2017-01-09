@@ -6,13 +6,19 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
 
+    <FrameLayout
+        android:id="@+id/main_activity_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/bbn_bottom_navigation_height"/>
+
     <it.sephiroth.android.library.bottomnavigation.BottomNavigation
-        android:id="@+id/bottom_navigation_bar"
+        android:id="@+id/main_activity_bottom_navbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:bbn_entries="@menu/bottombar_menu"
         app:bbn_scrollEnabled="false"
-        app:layout_behavior="@string/bbn_phone_view_behavior" />
+        app:layout_behavior="@string/bbn_phone_view_behavior"/>
 
 </android.support.design.widget.CoordinatorLayout>
