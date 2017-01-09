@@ -57,7 +57,7 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
 
         public StudentViewHolder(View itemView) {
             super(itemView);
-            studentName = (TextView) itemView.findViewById(R.id.item_student_list_studsent_name);
+            studentName = (TextView) itemView.findViewById(R.id.item_student_list_student_name);
         }
     }
 }

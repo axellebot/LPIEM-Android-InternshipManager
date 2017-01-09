@@ -10,4 +10,6 @@
     <color name="orange">#FF5722</color>
     <color name="orangeDeep">#D84315</color>
     <color name="blueGrey">#607D8B</color>
+
+    <color name="listDividerColor">#E0E0E0</color>
 </resources>
