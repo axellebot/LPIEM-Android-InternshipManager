@@ -5,7 +5,7 @@ import android.content.ContentValues;
 import java.util.List;
 import java.util.UUID;
 
-public class Contact {
+public class Student {
     private UUID id;
     private String givenName;
     private String familyName;
@@ -19,7 +19,7 @@ public class Contact {
     private ContentValues files;
     private List<Schedule> schedules;
 
-    public Contact() {
+    public Student() {
         this.id = UUID.randomUUID();
     }
 
