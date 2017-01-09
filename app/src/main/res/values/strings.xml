@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Internship Manager</string>
+
+    <!--App Main Part-->
+    <string name="part_student">Students</string>
+    <string name="part_leads">Leads</string>
+    <string name="part_schedules">Schedules</string>
+    <string name="part_files">Documents</string>
 </resources>
