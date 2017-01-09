@@ -10,12 +10,4 @@ public class Schedule {
     private String description;
     private Date date;
     private ArrayList<File> files;
-
-    public Schedule() {
-        this.id = UUID.randomUUID();
-    }
-
-    public UUID getId() {
-        return id;
-    }
 }

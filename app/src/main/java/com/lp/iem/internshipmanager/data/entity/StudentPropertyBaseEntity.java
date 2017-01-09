@@ -1,15 +1,12 @@
 package com.lp.iem.internshipmanager.data.entity;
 
 import com.raizlabs.android.dbflow.annotation.Column;
+import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import java.sql.Date;
-import java.util.List;
-
-@Table(database = MyDatabase.class)
-public class ScheduleEntity extends BaseModel {
+public abstract class StudentPropertyBaseEntity extends BaseModel {
     @Column
     @PrimaryKey(autoincrement = true)
     String id;
@@ -18,8 +15,8 @@ public class ScheduleEntity extends BaseModel {
     String label;
 
     @Column
-    String description;
+    String value;
 
-    @Column
-    Date date;
+    @ForeignKey
+    StudentEntity student;
 }

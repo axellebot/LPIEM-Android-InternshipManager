@@ -7,27 +7,15 @@ import java.util.UUID;
 
 public class Student {
     private UUID id;
-    private String givenName;
-    private String familyName;
+    private String fname;
+    private String lname;
     private String notes;
     private ContentValues emails;
-    private ContentValues phones;
+    private ContentValues numbers;
     private ContentValues addresses;
-    private ContentValues organizations;
+    private List<String> organizations;
     private ContentValues webSites;
 
-    private ContentValues files;
+    private List<File> files;
     private List<Schedule> schedules;
-
-    public Student() {
-        this.id = UUID.randomUUID();
-    }
-
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return this.givenName + ' ' + this.familyName;
-    }
 }

@@ -5,7 +5,6 @@ import java.net.URI;
 
 public class File extends java.io.File {
 
-    private String fileName;
     private String description;
 
     /**
@@ -34,8 +33,6 @@ public class File extends java.io.File {
      */
     public File(String pathname) {
         super(pathname);
-        String[] listOfValues = pathname.split("/");
-        this.fileName = listOfValues[listOfValues.length - 1];
     }
 
     /**
@@ -44,7 +41,5 @@ public class File extends java.io.File {
      */
     public File(URI uri) {
         super(uri);
-        String[] listOfValues = uri.getPath().split("/");
-        this.fileName = listOfValues[listOfValues.length - 1];
     }
 }
