@@ -3,16 +3,16 @@ package com.lp.iem.internshipmanager.presentation.model.student_property;
 import java.util.UUID;
 
 public class StudentBaseProperty {
-    private UUID uuid;
+    private String id;
     private String label;
     private String value;
 
-    public UUID getUuid() {
-        return uuid;
+    public String getId() {
+        return id;
     }
 
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getLabel() {

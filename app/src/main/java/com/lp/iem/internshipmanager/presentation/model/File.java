@@ -5,7 +5,7 @@ import java.util.UUID;
 
 
 public class File extends java.io.File {
-    private UUID id;
+    private String id;
     private String description;
 
     /**
@@ -44,11 +44,11 @@ public class File extends java.io.File {
         super(uri);
     }
 
-    public UUID getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(String id) {
         this.id = id;
     }
 
