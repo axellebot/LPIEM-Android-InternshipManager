@@ -1,4 +1,4 @@
 package com.lp.iem.internshipmanager.presentation.model.student_property;
 
-public class EmailProperty extends StudentBaseProperty {
+public class EmailProperty extends StudentPropertyBase {
 }

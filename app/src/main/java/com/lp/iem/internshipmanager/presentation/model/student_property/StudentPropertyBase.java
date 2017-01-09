@@ -1,8 +1,6 @@
 package com.lp.iem.internshipmanager.presentation.model.student_property;
 
-import java.util.UUID;
-
-public class StudentBaseProperty {
+public class StudentPropertyBase {
     private String id;
     private String label;
     private String value;

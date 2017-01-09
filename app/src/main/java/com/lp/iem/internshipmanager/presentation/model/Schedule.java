@@ -9,7 +9,6 @@ public class Schedule {
     private String label;
     private String description;
     private Date date;
-    private Student student;
 
     public String getId() {
         return id;
@@ -41,13 +40,5 @@ public class Schedule {
 
     public void setDate(Date date) {
         this.date = date;
-    }
-
-    public Student getStudent() {
-        return student;
-    }
-
-    public void setStudent(Student student) {
-        this.student = student;
     }
 }
