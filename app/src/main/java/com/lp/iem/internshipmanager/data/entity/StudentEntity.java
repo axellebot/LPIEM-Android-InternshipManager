@@ -47,7 +47,7 @@ public class StudentEntity extends BaseModel {
         if (addressList == null || addressList.isEmpty()) {
             addressList = SQLite.select()
                     .from(AddressPropertyEntity.class)
-                    .where(AddressPropertyEntity_Table.student_uid.eq(uid))
+                    .where(AddressPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return addressList;
@@ -58,7 +58,7 @@ public class StudentEntity extends BaseModel {
         if (emailList == null || emailList.isEmpty()) {
             emailList = SQLite.select()
                     .from(EmailPropertyEntity.class)
-                    .where(EmailPropertyEntity_Table.student_uid.eq(uid))
+                    .where(EmailPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return emailList;
@@ -69,7 +69,7 @@ public class StudentEntity extends BaseModel {
         if (numberList == null || numberList.isEmpty()) {
             numberList = SQLite.select()
                     .from(NumberPropertyEntity.class)
-                    .where(NumberPropertyEntity_Table.student_uid.eq(uid))
+                    .where(NumberPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return numberList;
@@ -80,7 +80,7 @@ public class StudentEntity extends BaseModel {
         if (websiteList == null || websiteList.isEmpty()) {
             websiteList = SQLite.select()
                     .from(WebsitePropertyEntity.class)
-                    .where(WebsitePropertyEntity_Table.student_uid.eq(uid))
+                    .where(WebsitePropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return websiteList;
@@ -91,7 +91,7 @@ public class StudentEntity extends BaseModel {
         if (fileList == null || fileList.isEmpty()) {
             fileList = SQLite.select()
                     .from(FileEntity.class)
-                    .where(FileEntity_Table.student_uid.eq(uid))
+                    .where(FileEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return fileList;
@@ -102,7 +102,7 @@ public class StudentEntity extends BaseModel {
         if (organizationList == null || organizationList.isEmpty()) {
             organizationList = SQLite.select()
                     .from(OrganizationPropertyEntity.class)
-                    .where(OrganizationPropertyEntity_Table.student_uid.eq(uid))
+                    .where(OrganizationPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return organizationList;
@@ -112,8 +112,8 @@ public class StudentEntity extends BaseModel {
     public List<ScheduleEntity> getScheduleList() {
         if (scheduleList == null || scheduleList.isEmpty()) {
             scheduleList = SQLite.select()
-                    .from(OrganizationPropertyEntity.class)
-                    .where(ScheduleEntity_Table.student_uid.eq(uid))
+                    .from(ScheduleEntity.class)
+                    .where(ScheduleEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return scheduleList;
