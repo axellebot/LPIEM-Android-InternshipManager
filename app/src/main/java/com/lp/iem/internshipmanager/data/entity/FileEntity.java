@@ -14,7 +14,7 @@ import java.util.List;
 public class FileEntity extends BaseModel {
     @Column
     @PrimaryKey(autoincrement = true)
-    String id;
+    int id;
 
     @Column
     String filePath;

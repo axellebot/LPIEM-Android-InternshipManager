@@ -12,7 +12,7 @@ import java.util.List;
 public class ScheduleEntity extends BaseModel {
     @Column
     @PrimaryKey(autoincrement = true)
-    String id;
+    int id;
 
     @Column
     String label;
