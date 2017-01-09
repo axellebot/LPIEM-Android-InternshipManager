@@ -6,25 +6,21 @@
 
     <item
         android:id="@+id/navbar_menu_students"
-        android:color="@color/white"
         android:icon="@drawable/ic_person_white_24dp"
         android:title="@string/part_student" />
 
     <item
         android:id="@+id/navbar_menu_leads"
-        android:color="@color/white"
         android:icon="@drawable/ic_trending_up_white_24dp"
         android:title="@string/part_leads" />
 
     <item
         android:id="@+id/navbar_menu_schedules"
-        android:color="@color/white"
         android:icon="@drawable/ic_event_white_24dp"
         android:title="@string/part_schedules" />
 
     <item
         android:id="@+id/navbar_menu_files"
-        android:color="@color/white"
         android:icon="@drawable/ic_insert_drive_file_white_24dp"
         android:title="@string/part_files" />
 
