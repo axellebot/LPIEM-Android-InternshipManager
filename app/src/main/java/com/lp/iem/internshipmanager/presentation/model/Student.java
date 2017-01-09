@@ -2,6 +2,12 @@ package com.lp.iem.internshipmanager.presentation.model;
 
 import android.content.ContentValues;
 
+import com.lp.iem.internshipmanager.presentation.model.student_property.AddressProperty;
+import com.lp.iem.internshipmanager.presentation.model.student_property.EmailProperty;
+import com.lp.iem.internshipmanager.presentation.model.student_property.NumberProperty;
+import com.lp.iem.internshipmanager.presentation.model.student_property.OrganizationProperty;
+import com.lp.iem.internshipmanager.presentation.model.student_property.WebsiteProperty;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -10,12 +16,12 @@ public class Student {
     private String fname;
     private String lname;
     private String notes;
-    private ContentValues emails;
-    private ContentValues numbers;
-    private ContentValues addresses;
-    private List<String> organizations;
-    private ContentValues webSites;
+    private List<EmailProperty> emailList;
+    private List<NumberProperty> numberList;
+    private List<AddressProperty> addressList;
+    private List<OrganizationProperty> organizationList;
+    private List<WebsiteProperty> webSites;
 
-    private List<File> files;
-    private List<Schedule> schedules;
+    private List<File> fileList;
+    private List<Schedule> scheduleList;
 }

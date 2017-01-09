@@ -1,5 +1,15 @@
 package com.lp.iem.internshipmanager.data.entity;
 
+import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsitePropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsitePropertyEntity_Table;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -21,11 +31,15 @@ public class StudentEntity extends BaseModel {
     @Column
     String lname;
 
+    @Column
+    String notes;
+
     List<AddressPropertyEntity> addressList;
     List<EmailPropertyEntity> emailList;
     List<NumberPropertyEntity> numberList;
     List<WebsitePropertyEntity> websiteList;
     List<FileEntity> fileList;
+    List<OrganizationPropertyEntity> organizationList;
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "addressList")
     public List<AddressPropertyEntity> getAddressList() {
@@ -37,7 +51,7 @@ public class StudentEntity extends BaseModel {
         }
         return addressList;
     }
-    
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "emailList")
     public List<EmailPropertyEntity> getEmailList() {
         if (emailList == null || emailList.isEmpty()) {
@@ -48,7 +62,7 @@ public class StudentEntity extends BaseModel {
         }
         return emailList;
     }
-    
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "numberList")
     public List<NumberPropertyEntity> getNumberList() {
         if (numberList == null || numberList.isEmpty()) {
@@ -59,7 +73,7 @@ public class StudentEntity extends BaseModel {
         }
         return numberList;
     }
-    
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "websiteList")
     public List<WebsitePropertyEntity> getWebsiteList() {
         if (websiteList == null || websiteList.isEmpty()) {
@@ -80,5 +94,16 @@ public class StudentEntity extends BaseModel {
                     .queryList();
         }
         return fileList;
+    }
+
+    @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "organizationList")
+    public List<OrganizationPropertyEntity> organizationList() {
+        if (organizationList == null || organizationList.isEmpty()) {
+            organizationList = SQLite.select()
+                    .from(OrganizationPropertyEntity.class)
+                    .where(OrganizationPropertyEntity_Table.student_uid.eq(uid))
+                    .queryList();
+        }
+        return organizationList;
     }
 }

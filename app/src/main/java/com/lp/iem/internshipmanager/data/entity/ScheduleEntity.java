@@ -11,8 +11,8 @@ import java.util.List;
 @Table(database = MyDatabase.class)
 public class ScheduleEntity extends BaseModel {
     @Column
-    @PrimaryKey(autoincrement = true)
-    int id;
+    @PrimaryKey
+    String id;
 
     @Column
     String label;
