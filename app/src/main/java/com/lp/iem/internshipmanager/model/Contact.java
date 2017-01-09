@@ -23,6 +23,11 @@ public class Contact {
         this.id = UUID.randomUUID();
     }
 
+    public Contact(String givenName, String familyName) {
+        this.givenName = givenName;
+        this.familyName = familyName;
+    }
+
     public UUID getId() {
         return id;
     }

@@ -22,10 +22,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
         navigator = new MainNavigator(this);
 
-        bottomNavigation = (BottomNavigation) findViewById(R.id.main_activity_bottom_navbar);
         bottomNavigation.setOnMenuItemClickListener(new BottomNavigation.OnMenuItemSelectionListener() {
             @Override
             public void onMenuItemSelect(@IdRes int i, int i1, boolean b) {
@@ -47,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onMenuItemReselect(@IdRes int i, int i1, boolean b) {}
         });
+
+        navigator.displayStudentListFragment();
 
     }
 

@@ -4,6 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/fragment_studentlist_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+        android:paddingTop="@dimen/default_material_margin_very_huge"/>
+
     <com.arlib.floatingsearchview.FloatingSearchView
         android:id="@+id/fragment_studentlist_searchview"
         android:layout_width="match_parent"
@@ -16,10 +23,5 @@
         app:floatingSearch_showSearchKey="true"
         app:floatingSearch_leftActionMode="showSearch"
         app:floatingSearch_close_search_on_keyboard_dismiss="true"/>
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/fragment_studentlist_recyclerview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
 
 </RelativeLayout>
