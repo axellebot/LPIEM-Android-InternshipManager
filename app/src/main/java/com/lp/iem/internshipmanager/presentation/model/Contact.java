@@ -1,4 +1,4 @@
-package com.lp.iem.internshipmanager.model;
+package com.lp.iem.internshipmanager.presentation.model;
 
 import android.content.ContentValues;
 
