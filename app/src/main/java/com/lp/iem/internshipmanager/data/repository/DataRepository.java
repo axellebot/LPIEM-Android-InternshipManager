@@ -44,7 +44,7 @@ public class DataRepository {
     }
 
     public Observable<List<Student>> getStudents() {
-        return dbFlowManager.getStudents().map(new Func1<List<StudentEntity>, List<Student>>() {
+        return dbFlowManager.getStudentList().map(new Func1<List<StudentEntity>, List<Student>>() {
             @Override
             public List<Student> call(List<StudentEntity> studentEntityList) {
                 List<Student> studentList = studentDataMapper.transform(studentEntityList);
