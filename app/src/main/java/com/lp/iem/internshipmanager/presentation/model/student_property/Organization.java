@@ -6,7 +6,7 @@ import java.util.UUID;
  * Created by axellebot on 09/01/2017.
  */
 
-public class OrganizationProperty {
+public class Organization {
     private String id;
     private String name;
     private String studentId;

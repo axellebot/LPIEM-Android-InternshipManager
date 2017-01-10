@@ -9,7 +9,7 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
 @Table(database = MyDatabase.class)
-public class OrganizationPropertyEntity extends BaseModel {
+public class OrganizationEntity extends BaseModel {
     @Column
     @PrimaryKey
     public String id;

@@ -1,14 +1,14 @@
 package com.lp.iem.internshipmanager.data.entity;
 
-import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressEntity;
 import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailEntity;
 import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberEntity;
 import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationEntity;
 import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsitePropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsiteEntity;
 import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsitePropertyEntity_Table;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
@@ -35,12 +35,12 @@ public class StudentEntity extends BaseModel {
     @Column
     public String notes;
 
-    List<AddressPropertyEntity> addressList;
-    List<EmailPropertyEntity> emailList;
-    List<NumberPropertyEntity> numberList;
-    List<WebsitePropertyEntity> websiteList;
+    List<AddressEntity> addressList;
+    List<EmailEntity> emailList;
+    List<NumberEntity> numberList;
+    List<WebsiteEntity> websiteList;
     List<FileEntity> fileList;
-    List<OrganizationPropertyEntity> organizationList;
+    List<OrganizationEntity> organizationList;
     List<ScheduleEntity> scheduleList;
 
     public StudentEntity() {
@@ -53,19 +53,19 @@ public class StudentEntity extends BaseModel {
         scheduleList=new ArrayList<>();
     }
 
-    public void setAddressList(List<AddressPropertyEntity> addressList) {
+    public void setAddressList(List<AddressEntity> addressList) {
         this.addressList = addressList;
     }
 
-    public void setEmailList(List<EmailPropertyEntity> emailList) {
+    public void setEmailList(List<EmailEntity> emailList) {
         this.emailList = emailList;
     }
 
-    public void setNumberList(List<NumberPropertyEntity> numberList) {
+    public void setNumberList(List<NumberEntity> numberList) {
         this.numberList = numberList;
     }
 
-    public void setWebsiteList(List<WebsitePropertyEntity> websiteList) {
+    public void setWebsiteList(List<WebsiteEntity> websiteList) {
         this.websiteList = websiteList;
     }
 
@@ -73,7 +73,7 @@ public class StudentEntity extends BaseModel {
         this.fileList = fileList;
     }
 
-    public void setOrganizationList(List<OrganizationPropertyEntity> organizationList) {
+    public void setOrganizationList(List<OrganizationEntity> organizationList) {
         this.organizationList = organizationList;
     }
 
@@ -82,10 +82,10 @@ public class StudentEntity extends BaseModel {
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "addressList")
-    public List<AddressPropertyEntity> getAddressList() {
+    public List<AddressEntity> getAddressList() {
         if (addressList == null || addressList.isEmpty()) {
             addressList = SQLite.select()
-                    .from(AddressPropertyEntity.class)
+                    .from(AddressEntity.class)
                     .where(AddressPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
@@ -93,10 +93,10 @@ public class StudentEntity extends BaseModel {
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "emailList")
-    public List<EmailPropertyEntity> getEmailList() {
+    public List<EmailEntity> getEmailList() {
         if (emailList == null || emailList.isEmpty()) {
             emailList = SQLite.select()
-                    .from(EmailPropertyEntity.class)
+                    .from(EmailEntity.class)
                     .where(EmailPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
@@ -104,10 +104,10 @@ public class StudentEntity extends BaseModel {
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "numberList")
-    public List<NumberPropertyEntity> getNumberList() {
+    public List<NumberEntity> getNumberList() {
         if (numberList == null || numberList.isEmpty()) {
             numberList = SQLite.select()
-                    .from(NumberPropertyEntity.class)
+                    .from(NumberEntity.class)
                     .where(NumberPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
@@ -115,10 +115,10 @@ public class StudentEntity extends BaseModel {
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "websiteList")
-    public List<WebsitePropertyEntity> getWebsiteList() {
+    public List<WebsiteEntity> getWebsiteList() {
         if (websiteList == null || websiteList.isEmpty()) {
             websiteList = SQLite.select()
-                    .from(WebsitePropertyEntity.class)
+                    .from(WebsiteEntity.class)
                     .where(WebsitePropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }
@@ -137,10 +137,10 @@ public class StudentEntity extends BaseModel {
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "organizationList")
-    public List<OrganizationPropertyEntity> getOrganizationList() {
+    public List<OrganizationEntity> getOrganizationList() {
         if (organizationList == null || organizationList.isEmpty()) {
             organizationList = SQLite.select()
-                    .from(OrganizationPropertyEntity.class)
+                    .from(OrganizationEntity.class)
                     .where(OrganizationPropertyEntity_Table.student_id.eq(id))
                     .queryList();
         }

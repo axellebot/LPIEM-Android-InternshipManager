@@ -4,5 +4,5 @@ import com.lp.iem.internshipmanager.data.entity.MyDatabase;
 import com.raizlabs.android.dbflow.annotation.Table;
 
 @Table(database = MyDatabase.class)
-public class AddressPropertyEntity extends StudentPropertyBaseEntity {
+public class WebsiteEntity extends StudentPropertyBaseEntity {
 }

@@ -1,27 +1,24 @@
 package com.lp.iem.internshipmanager.presentation.model;
 
-import android.content.ContentValues;
-
-import com.lp.iem.internshipmanager.presentation.model.student_property.AddressProperty;
-import com.lp.iem.internshipmanager.presentation.model.student_property.EmailProperty;
-import com.lp.iem.internshipmanager.presentation.model.student_property.NumberProperty;
-import com.lp.iem.internshipmanager.presentation.model.student_property.OrganizationProperty;
-import com.lp.iem.internshipmanager.presentation.model.student_property.WebsiteProperty;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Address;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Email;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Number;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Organization;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Website;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 public class Student {
     private String id;
     private String fname;
     private String lname;
     private String notes;
-    private List<EmailProperty> emailList;
-    private List<NumberProperty> numberList;
-    private List<AddressProperty> addressList;
-    private List<OrganizationProperty> organizationList;
-    private List<WebsiteProperty> webSites;
+    private List<Email> emailList;
+    private List<Number> numberList;
+    private List<Address> addressList;
+    private List<Organization> organizationList;
+    private List<Website> webSites;
     private List<File> fileList;
     private List<Schedule> scheduleList;
 
@@ -67,43 +64,43 @@ public class Student {
         this.notes = notes;
     }
 
-    public List<EmailProperty> getEmailList() {
+    public List<Email> getEmailList() {
         return emailList;
     }
 
-    public void setEmailList(List<EmailProperty> emailList) {
+    public void setEmailList(List<Email> emailList) {
         this.emailList = emailList;
     }
 
-    public List<NumberProperty> getNumberList() {
+    public List<Number> getNumberList() {
         return numberList;
     }
 
-    public void setNumberList(List<NumberProperty> numberList) {
+    public void setNumberList(List<Number> numberList) {
         this.numberList = numberList;
     }
 
-    public List<AddressProperty> getAddressList() {
+    public List<Address> getAddressList() {
         return addressList;
     }
 
-    public void setAddressList(List<AddressProperty> addressList) {
+    public void setAddressList(List<Address> addressList) {
         this.addressList = addressList;
     }
 
-    public List<OrganizationProperty> getOrganizationList() {
+    public List<Organization> getOrganizationList() {
         return organizationList;
     }
 
-    public void setOrganizationList(List<OrganizationProperty> organizationList) {
+    public void setOrganizationList(List<Organization> organizationList) {
         this.organizationList = organizationList;
     }
 
-    public List<WebsiteProperty> getWebSites() {
+    public List<Website> getWebSites() {
         return webSites;
     }
 
-    public void setWebSites(List<WebsiteProperty> webSites) {
+    public void setWebSites(List<Website> webSites) {
         this.webSites = webSites;
     }
 

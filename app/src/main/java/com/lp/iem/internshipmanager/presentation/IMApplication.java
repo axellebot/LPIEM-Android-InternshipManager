@@ -6,14 +6,14 @@ import com.lp.iem.internshipmanager.data.entity.FileEntity;
 import com.lp.iem.internshipmanager.data.entity.ScheduleEntity;
 import com.lp.iem.internshipmanager.data.entity.StudentEntity;
 import com.lp.iem.internshipmanager.data.entity.mapper.FileDataMapper;
-import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationPropertyDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.ScheduleDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentPropertyBaseDataMapper;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressPropertyEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailPropertyEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberPropertyEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationPropertyEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberEntity;
+import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationEntity;
 import com.lp.iem.internshipmanager.data.manager.DBFlowManagerImpl;
 import com.lp.iem.internshipmanager.data.repository.DataRepository;
 import com.raizlabs.android.dbflow.config.FlowConfig;
@@ -46,13 +46,13 @@ public class IMApplication extends Application {
     private void initInjection() {
         DBFlowManagerImpl dbFlowManager = new DBFlowManagerImpl();
         FileDataMapper fileDataMapper = new FileDataMapper();
-        OrganizationPropertyDataMapper organizationProperty = new OrganizationPropertyDataMapper();
+        OrganizationDataMapper organizationDataMapper = new OrganizationDataMapper();
         ScheduleDataMapper scheduleDataMapper = new ScheduleDataMapper();
         StudentPropertyBaseDataMapper studentPropertyBaseDataMapper = new StudentPropertyBaseDataMapper();
 
-        StudentDataMapper studentDataMapper = new StudentDataMapper(fileDataMapper, organizationProperty, scheduleDataMapper, studentPropertyBaseDataMapper);
+        StudentDataMapper studentDataMapper = new StudentDataMapper(fileDataMapper, organizationDataMapper, scheduleDataMapper, studentPropertyBaseDataMapper);
 
-        this.dataRepository = new DataRepository(dbFlowManager, studentDataMapper, scheduleDataMapper, fileDataMapper, organizationProperty, studentPropertyBaseDataMapper);
+        this.dataRepository = new DataRepository(dbFlowManager, studentDataMapper, scheduleDataMapper, fileDataMapper, organizationDataMapper, studentPropertyBaseDataMapper);
     }
 
     private void initDBFlow() {
@@ -79,20 +79,20 @@ public class IMApplication extends Application {
         studentEntity.getFileList().add(fileEntity);
 
         //Address
-        AddressPropertyEntity addressPropertyEntity = new AddressPropertyEntity();
-        addressPropertyEntity.id = UUID.randomUUID().toString();
-        addressPropertyEntity.label = "RDV";
-        addressPropertyEntity.value = "21 rue Peter Fink";
-        addressPropertyEntity.student = studentEntity;
-        studentEntity.getAddressList().add(addressPropertyEntity);
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.id = UUID.randomUUID().toString();
+        addressEntity.label = "RDV";
+        addressEntity.value = "21 rue Peter Fink";
+        addressEntity.student = studentEntity;
+        studentEntity.getAddressList().add(addressEntity);
 
         //Email
-        EmailPropertyEntity emailPropertyEntity = new EmailPropertyEntity();
-        emailPropertyEntity.id = UUID.randomUUID().toString();
-        emailPropertyEntity.label = "Email";
-        emailPropertyEntity.value = "example@example.com";
-        emailPropertyEntity.student = studentEntity;
-        studentEntity.getEmailList().add(emailPropertyEntity);
+        EmailEntity emailEntity = new EmailEntity();
+        emailEntity.id = UUID.randomUUID().toString();
+        emailEntity.label = "Email";
+        emailEntity.value = "example@example.com";
+        emailEntity.student = studentEntity;
+        studentEntity.getEmailList().add(emailEntity);
 
         //schedules
         ScheduleEntity scheduleEntity = new ScheduleEntity();
@@ -104,19 +104,19 @@ public class IMApplication extends Application {
         studentEntity.getScheduleList().add(scheduleEntity);
 
         //numbers
-        NumberPropertyEntity numberPropertyEntity = new NumberPropertyEntity();
-        numberPropertyEntity.id= UUID.randomUUID().toString();
-        numberPropertyEntity.label="Numero uno";
-        numberPropertyEntity.value="+33 6 05 05 05 05";
-        numberPropertyEntity.student=studentEntity;
-        studentEntity.getNumberList().add(numberPropertyEntity);
+        NumberEntity numberEntity = new NumberEntity();
+        numberEntity.id= UUID.randomUUID().toString();
+        numberEntity.label="Numero uno";
+        numberEntity.value="+33 6 05 05 05 05";
+        numberEntity.student=studentEntity;
+        studentEntity.getNumberList().add(numberEntity);
 
         //organnization
-        OrganizationPropertyEntity organizationPropertyEntity = new OrganizationPropertyEntity();
-        organizationPropertyEntity.id=UUID.randomUUID().toString();
-        organizationPropertyEntity.name="L'entreprise";
-        organizationPropertyEntity.student=studentEntity;
-        studentEntity.getOrganizationList().add(organizationPropertyEntity);
+        OrganizationEntity organizationEntity = new OrganizationEntity();
+        organizationEntity.id=UUID.randomUUID().toString();
+        organizationEntity.name="L'entreprise";
+        organizationEntity.student=studentEntity;
+        studentEntity.getOrganizationList().add(organizationEntity);
 
         studentEntity.save();
     }

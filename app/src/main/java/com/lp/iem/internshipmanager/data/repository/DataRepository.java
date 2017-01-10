@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 
 import com.lp.iem.internshipmanager.data.entity.StudentEntity;
 import com.lp.iem.internshipmanager.data.entity.mapper.FileDataMapper;
-import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationPropertyDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.ScheduleDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentPropertyBaseDataMapper;
@@ -22,10 +22,10 @@ public class DataRepository {
     private StudentDataMapper studentDataMapper;
     private ScheduleDataMapper scheduleDataMapper;
     private FileDataMapper fileDataMapper;
-    private OrganizationPropertyDataMapper organizationProperty;
+    private OrganizationDataMapper organizationProperty;
     private StudentPropertyBaseDataMapper studentPropertyBaseDataMapper;
 
-    public DataRepository(@NonNull DBFlowManagerImpl dbFlowManager, @NonNull StudentDataMapper studentDataMapper, @NonNull ScheduleDataMapper scheduleDataMapper, @NonNull FileDataMapper fileDataMapper, @NonNull OrganizationPropertyDataMapper organizationProperty, @NonNull StudentPropertyBaseDataMapper studentPropertyBaseDataMapper) {
+    public DataRepository(@NonNull DBFlowManagerImpl dbFlowManager, @NonNull StudentDataMapper studentDataMapper, @NonNull ScheduleDataMapper scheduleDataMapper, @NonNull FileDataMapper fileDataMapper, @NonNull OrganizationDataMapper organizationProperty, @NonNull StudentPropertyBaseDataMapper studentPropertyBaseDataMapper) {
         this.dbFlowManager = dbFlowManager;
         this.studentDataMapper = studentDataMapper;
         this.scheduleDataMapper = scheduleDataMapper;

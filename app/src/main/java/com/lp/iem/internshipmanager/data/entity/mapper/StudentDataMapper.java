@@ -2,12 +2,10 @@ package com.lp.iem.internshipmanager.data.entity.mapper;
 
 import com.lp.iem.internshipmanager.data.entity.StudentEntity;
 import com.lp.iem.internshipmanager.data.entity.student_porperty.StudentPropertyBaseEntity;
-import com.lp.iem.internshipmanager.presentation.model.File;
-import com.lp.iem.internshipmanager.presentation.model.Schedule;
 import com.lp.iem.internshipmanager.presentation.model.Student;
-import com.lp.iem.internshipmanager.presentation.model.student_property.AddressProperty;
-import com.lp.iem.internshipmanager.presentation.model.student_property.EmailProperty;
-import com.lp.iem.internshipmanager.presentation.model.student_property.NumberProperty;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Address;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Email;
+import com.lp.iem.internshipmanager.presentation.model.student_property.Number;
 import com.lp.iem.internshipmanager.presentation.model.student_property.StudentPropertyBase;
 
 import java.util.ArrayList;
@@ -16,12 +14,12 @@ import java.util.List;
 public class StudentDataMapper {
 
     private FileDataMapper fileDataMapper;
-    private OrganizationPropertyDataMapper organizationPropertyDataMapper;
+    private OrganizationDataMapper organizationPropertyDataMapper;
     private ScheduleDataMapper scheduleDataMapper;
     private StudentPropertyBaseDataMapper studentPropertyBaseDataMapper;
 
 
-    public StudentDataMapper(FileDataMapper fileDataMapper, OrganizationPropertyDataMapper organizationPropertyDataMapper, ScheduleDataMapper scheduleDataMapper, StudentPropertyBaseDataMapper studentPropertyBaseDataMapper) {
+    public StudentDataMapper(FileDataMapper fileDataMapper, OrganizationDataMapper organizationPropertyDataMapper, ScheduleDataMapper scheduleDataMapper, StudentPropertyBaseDataMapper studentPropertyBaseDataMapper) {
         this.fileDataMapper = fileDataMapper;
         this.organizationPropertyDataMapper = organizationPropertyDataMapper;
         this.scheduleDataMapper = scheduleDataMapper;
@@ -40,13 +38,13 @@ public class StudentDataMapper {
         Student student = new Student();
         List<StudentPropertyBase> studentPropertyBaseList;
         studentPropertyBaseList = studentPropertyBaseDataMapper.transform((List<StudentPropertyBaseEntity>) (List<?>) studentEntity.getAddressList());
-        student.setAddressList((List<AddressProperty>) (List<?>) studentPropertyBaseList);
+        student.setAddressList((List<Address>) (List<?>) studentPropertyBaseList);
 
         studentPropertyBaseList = studentPropertyBaseDataMapper.transform((List<StudentPropertyBaseEntity>) (List<?>) studentEntity.getAddressList());
-        student.setEmailList((List<EmailProperty>) (List<?>) studentPropertyBaseList);
+        student.setEmailList((List<Email>) (List<?>) studentPropertyBaseList);
         
         studentPropertyBaseList = studentPropertyBaseDataMapper.transform((List<StudentPropertyBaseEntity>) (List<?>) studentEntity.getNumberList());
-        student.setNumberList((List<NumberProperty>) (List<?>) studentPropertyBaseList);
+        student.setNumberList((List<Number>) (List<?>) studentPropertyBaseList);
 
         student.setFileList(fileDataMapper.transform(studentEntity.getFileList()));
         student.setOrganizationList(organizationPropertyDataMapper.transform(studentEntity.getOrganizationList()));

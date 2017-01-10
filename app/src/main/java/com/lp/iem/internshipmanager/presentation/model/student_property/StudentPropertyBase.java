@@ -1,6 +1,6 @@
 package com.lp.iem.internshipmanager.presentation.model.student_property;
 
-public class StudentPropertyBase {
+public abstract class StudentPropertyBase {
     private String id;
     private String label;
     private String value;
