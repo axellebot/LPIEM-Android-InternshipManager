@@ -5,13 +5,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.model.Contact;
 import com.lp.iem.internshipmanager.presentation.navigator.MainNavigator;
+import com.lp.iem.internshipmanager.presentation.ui.listener.StudentSelectedListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements StudentSelectedListener {
 
     private MainNavigator navigator;
 
@@ -50,4 +52,14 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        navigator.onBackPressed();
+    }
+
+    @Override
+    public void studentSelected(Contact student) {
+        navigator.displayStudentDetailsFragment(student);
+    }
 }

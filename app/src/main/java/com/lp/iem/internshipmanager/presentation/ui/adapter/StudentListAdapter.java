@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
@@ -19,6 +20,7 @@ import java.util.List;
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder> {
 
     private List<Contact> studentList;
+    private ClickListener clickListener;;
 
     public StudentListAdapter(List<Contact> studentList) {
         this.studentList = studentList;
@@ -33,8 +35,16 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     }
 
     @Override
-    public void onBindViewHolder(final StudentViewHolder holder, int position) {
+    public void onBindViewHolder(final StudentViewHolder holder, final int position) {
         holder.studentName.setText(studentList.get(position).getName());
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(clickListener != null) {
+                    clickListener.ItemClicked(view, position);
+                }
+            }
+        });
     }
 
     @Override
@@ -53,11 +63,21 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
     }
 
     static class StudentViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout item;
         TextView studentName;
 
         public StudentViewHolder(View itemView) {
             super(itemView);
+            item = (LinearLayout) itemView.findViewById(R.id.item_student_list_student_item);
             studentName = (TextView) itemView.findViewById(R.id.item_student_list_student_name);
         }
+    }
+
+    public void setClickListener(ClickListener clickListener) {
+        this.clickListener = clickListener;
+    }
+
+    public interface ClickListener {
+        void ItemClicked(View v, int position);
     }
 }

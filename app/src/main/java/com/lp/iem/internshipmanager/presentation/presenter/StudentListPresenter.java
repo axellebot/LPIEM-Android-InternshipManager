@@ -2,6 +2,7 @@ package com.lp.iem.internshipmanager.presentation.presenter;
 
 import com.lp.iem.internshipmanager.model.Contact;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
+import com.lp.iem.internshipmanager.presentation.ui.listener.StudentSelectedListener;
 import com.lp.iem.internshipmanager.presentation.ui.view.StudentListView;
 
 import java.util.ArrayList;
@@ -16,10 +17,13 @@ import java.util.List;
 public class StudentListPresenter implements BaseActivityLifeCycle {
 
     private StudentListView studentListView;
-    List<Contact> studentList;
+    private List<Contact> studentList;
 
-    public StudentListPresenter(StudentListView studentListView) {
+    private StudentSelectedListener studentSelectedListener;
+
+    public StudentListPresenter(StudentListView studentListView, StudentSelectedListener studentSelectedListener) {
         this.studentListView = studentListView;
+        this.studentSelectedListener = studentSelectedListener;
     }
 
     @Override
@@ -51,6 +55,10 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
         //todo get student list
         /*List<Contact> studentList = dataRepository.getStudentList();
         studentListView.displayStudentList(studentList);*/
+    }
+
+    public void itemClicked(int position) {
+        studentSelectedListener.studentSelected(studentList.get(position));
     }
 
     public void filterList(String query) {
@@ -86,4 +94,5 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
         }
         return filteredModelList;
     }
+
 }

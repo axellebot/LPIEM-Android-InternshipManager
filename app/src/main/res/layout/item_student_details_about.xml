@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -30,11 +31,11 @@
                 android:layout_height="@dimen/list_divider_height"
                 android:background="@color/listDividerColor"/>
 
-            <!--<ListView
+            <ListView
                     android:id="@+id/item_studentdetails_about_websitelist"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"/>-->
+                    tools:listitem="@layout/item_website"/>
 
             <View
                 android:layout_width="match_parent"
@@ -45,7 +46,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/default_material_margin_small"
-                android:text="Note"/>
+                android:text="Note"
+                android:textColor="@color/black"/>
 
             <TextView
                 android:id="@+id/item_studentdetails_about_note"

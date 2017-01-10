@@ -6,6 +6,7 @@ import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,6 +14,7 @@ import com.arlib.floatingsearchview.FloatingSearchView;
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.model.Contact;
 import com.lp.iem.internshipmanager.presentation.presenter.StudentListPresenter;
+import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.adapter.StudentListAdapter;
 import com.lp.iem.internshipmanager.presentation.ui.view.StudentListView;
 
@@ -90,6 +92,12 @@ public class StudentListFragment extends Fragment implements StudentListView {
     @Override
     public void displayStudentList(List<Contact> studentList) {
         studentListAdapter = new StudentListAdapter(studentList);
+        studentListAdapter.setClickListener(new StudentListAdapter.ClickListener() {
+            @Override
+            public void ItemClicked(View v, int position) {
+                presenter.itemClicked(position);
+            }
+        });
         recyclerView.setAdapter(studentListAdapter);
     }
 
@@ -99,6 +107,6 @@ public class StudentListFragment extends Fragment implements StudentListView {
     }
 
     private void initializeInjection() {
-        presenter = new StudentListPresenter(this);
+        presenter = new StudentListPresenter(this, (MainActivity) getActivity());
     }
 }
