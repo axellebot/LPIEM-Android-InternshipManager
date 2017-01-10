@@ -1,15 +1,18 @@
 package com.lp.iem.internshipmanager.presentation.navigator;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.model.Contact;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
+import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentDetailsFragment;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentListFragment;
+
+import java.util.List;
 
 /**
  * Created by romai on 09/01/2017.
@@ -17,7 +20,7 @@ import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentListFragment
 
 public class MainNavigator implements BaseActivityLifeCycle {
     public final static int FRAGMENT_STUDENT_LIST = 0;
-    public final static int FRAGMENT_STUDENT_DETAILS = 0;
+    public final static int FRAGMENT_STUDENT_DETAILS = 1;
 
     private int currentFragmentId;
 
@@ -28,7 +31,7 @@ public class MainNavigator implements BaseActivityLifeCycle {
 
     public MainNavigator(Activity activity) {
         this.activity = activity;
-        this.fragmentManager = this.activity.getFragmentManager();
+        this.fragmentManager = ((MainActivity) activity).getSupportFragmentManager();
     }
 
     @Override
@@ -58,7 +61,10 @@ public class MainNavigator implements BaseActivityLifeCycle {
 
     public void onBackPressed(){
         if(currentFragmentId == FRAGMENT_STUDENT_DETAILS) {
-            fragmentManager.popBackStack();
+            if(getCurrentFragment() instanceof StudentDetailsFragment && !((StudentDetailsFragment)getCurrentFragment()).isItemIsFocused()) {
+                fragmentManager.popBackStack();
+                currentFragmentId = FRAGMENT_STUDENT_LIST;
+            }
         }
     }
 
@@ -79,7 +85,7 @@ public class MainNavigator implements BaseActivityLifeCycle {
         currentFragmentId = FRAGMENT_STUDENT_DETAILS;
     }
 
-    public Fragment getCurrentFragment() {
+    private Fragment getCurrentFragment() {
         return fragmentManager.findFragmentById(R.id.main_activity_fragment_container);
     }
 

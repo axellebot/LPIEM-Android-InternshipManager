@@ -37,6 +37,8 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private ClickCallbackListener clickCallbackListener;
 
+    private boolean itemIsFocused = false;
+
     public StudentDetailsAdapter(Contact student, ClickCallbackListener clickCallbackListener) {
         this.student = student;
         this.clickCallbackListener= clickCallbackListener;
@@ -160,6 +162,8 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         aboutViewHolder.noteEdit.setVisibility(View.VISIBLE);
                         aboutViewHolder.noteEdit.setText(aboutViewHolder.note.getText());
                         aboutViewHolder.applyButton.setVisibility(View.VISIBLE);
+                        aboutViewHolder.closeButton.setVisibility(View.VISIBLE);
+                        itemIsFocused = true;
                     }
                 });
                 aboutViewHolder.applyButton.setOnClickListener(new View.OnClickListener() {
@@ -169,6 +173,18 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                         aboutViewHolder.note.setText(aboutViewHolder.noteEdit.getText());
                         aboutViewHolder.note.setVisibility(View.VISIBLE);
                         aboutViewHolder.applyButton.setVisibility(View.GONE);
+                        aboutViewHolder.closeButton.setVisibility(View.GONE);
+                        itemIsFocused = false;
+                    }
+                });
+                aboutViewHolder.closeButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        aboutViewHolder.noteEdit.setVisibility(View.GONE);
+                        aboutViewHolder.note.setVisibility(View.VISIBLE);
+                        aboutViewHolder.applyButton.setVisibility(View.GONE);
+                        aboutViewHolder.closeButton.setVisibility(View.GONE);
+                        itemIsFocused = false;
                     }
                 });
                 break;
@@ -220,6 +236,10 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         return CARD_NUMBER;
     }
 
+    public boolean isItemIsFocused() {
+        return itemIsFocused;
+    }
+
     static class TitleViewHolder extends RecyclerView.ViewHolder {
         TextView title;
 
@@ -247,7 +267,8 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         RecyclerView websiteList;
         TextView note;
         EditText noteEdit;
-        TextView applyButton;
+        ImageView applyButton;
+        ImageView closeButton;
 
         public AboutViewHolder(View itemView) {
             super(itemView);
@@ -255,7 +276,8 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             websiteList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_about_websitelist);
             note = (TextView) itemView.findViewById(R.id.item_studentdetails_about_note);
             noteEdit = (EditText) itemView.findViewById(R.id.item_studentdetails_about_note_edit);
-            applyButton = (TextView) itemView.findViewById(R.id.item_studentdetails_about_note_edit_apply_button);
+            applyButton = (ImageView) itemView.findViewById(R.id.item_studentdetails_about_note_edit_apply_button);
+            closeButton = (ImageView) itemView.findViewById(R.id.item_studentdetails_about_note_edit_close_button);
         }
     }
 

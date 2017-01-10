@@ -1,7 +1,7 @@
 package com.lp.iem.internshipmanager.presentation.ui.fragment;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -79,6 +79,10 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
     public void displayDetails(Contact student) {
         studentDetailsAdapter = new StudentDetailsAdapter(student, presenter);
         recyclerView.setAdapter(studentDetailsAdapter);
+    }
+
+    public boolean isItemIsFocused() {
+        return studentDetailsAdapter.isItemIsFocused();
     }
 
     private void initializeInjection() {

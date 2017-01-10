@@ -3,7 +3,6 @@ package com.lp.iem.internshipmanager.presentation.ui.activity;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.model.Contact;
@@ -56,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements StudentSelectedLi
 
     @Override
     public void onBackPressed() {
-        super.onBackPressed();
         navigator.onBackPressed();
     }
 
