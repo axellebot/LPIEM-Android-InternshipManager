@@ -21,6 +21,7 @@ public class ScheduleDataMapper {
         schedule.setLabel(scheduleEntity.label);
         schedule.setDescription(scheduleEntity.description);
         schedule.setDate(scheduleEntity.date);
+        schedule.setStudentId(scheduleEntity.student.id);
         return schedule;
     }
 }

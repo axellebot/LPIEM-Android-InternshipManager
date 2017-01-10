@@ -4,6 +4,7 @@ public class StudentPropertyBase {
     private String id;
     private String label;
     private String value;
+    private String studentId;
 
     public String getId() {
         return id;
@@ -27,5 +28,13 @@ public class StudentPropertyBase {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

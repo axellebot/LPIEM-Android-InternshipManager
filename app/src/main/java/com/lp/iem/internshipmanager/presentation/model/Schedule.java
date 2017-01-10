@@ -9,6 +9,7 @@ public class Schedule {
     private String label;
     private String description;
     private Date date;
+    private String studentId;
 
     public String getId() {
         return id;
@@ -40,5 +41,13 @@ public class Schedule {
 
     public void setDate(Date date) {
         this.date = date;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

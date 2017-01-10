@@ -18,6 +18,7 @@ public class FileDataMapper {
         File file = new File(fileEntity.filePath);
         file.setId(fileEntity.id);
         file.setDescription(fileEntity.description);
+        file.setStudentId(fileEntity.student.id);
         return file;
     }
 }

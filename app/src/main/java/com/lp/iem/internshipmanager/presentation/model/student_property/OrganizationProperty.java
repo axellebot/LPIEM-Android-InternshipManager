@@ -9,6 +9,7 @@ import java.util.UUID;
 public class OrganizationProperty {
     private String id;
     private String name;
+    private String studentId;
 
     public String getId() {
         return id;
@@ -24,5 +25,13 @@ public class OrganizationProperty {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

@@ -7,6 +7,7 @@ import java.util.UUID;
 public class File extends java.io.File {
     private String id;
     private String description;
+    private String studentId;
 
     /**
      *
@@ -58,5 +59,13 @@ public class File extends java.io.File {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

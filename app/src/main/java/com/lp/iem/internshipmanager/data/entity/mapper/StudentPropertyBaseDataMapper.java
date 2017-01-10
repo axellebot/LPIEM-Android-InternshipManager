@@ -21,6 +21,7 @@ public class StudentPropertyBaseDataMapper {
         studentPropertyBase.setId(studentPropertyBaseEntity.id);
         studentPropertyBase.setLabel(studentPropertyBaseEntity.label);
         studentPropertyBase.setValue(studentPropertyBaseEntity.value);
+        studentPropertyBase.setStudentId(studentPropertyBaseEntity.student.id);
         return studentPropertyBase;
     }
 }
