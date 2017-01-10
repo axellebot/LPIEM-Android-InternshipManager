@@ -12,6 +12,6 @@
     <dimen name="default_material_margin_very_huge">64dp</dimen>
     <dimen name="item_student_list_student_name_textsize">22sp</dimen>
     <dimen name="item_studentdetails_title_textsize">18sp</dimen>
-    <dimen name="default_card_elevation">5dp</dimen>
+    <dimen name="default_card_elevation">3dp</dimen>
     <dimen name="list_divider_height">1px</dimen>
 </resources>

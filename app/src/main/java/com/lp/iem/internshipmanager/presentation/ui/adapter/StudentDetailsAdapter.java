@@ -1,5 +1,7 @@
 package com.lp.iem.internshipmanager.presentation.ui.adapter;
 
+import android.content.Context;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,12 +31,15 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Contact student;
 
+    private Context context;
+
     public StudentDetailsAdapter(Contact student) {
         this.student = student;
     }
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        context = parent.getContext();
         View view = null;
         switch (viewType) {
             case CARD_TITLE:
@@ -70,10 +75,79 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 titleViewHolder.title.setText(student.getName());
                 break;
             case CARD_CONTACT:
+                ContactInfosViewHolder contactInfosViewHolder = (ContactInfosViewHolder) holder;
+                // PHONES
+                LinearLayoutManager phonesLayoutManager = new LinearLayoutManager(context){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                phonesLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                contactInfosViewHolder.phoneNumberList.setLayoutManager(phonesLayoutManager);
+                // todo get phones
+                // MOCK
+                List<String> phones = new ArrayList<>();
+                phones.add("0678451265");
+                phones.add("0678451266");
+                StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(phones);
+                contactInfosViewHolder.phoneNumberList.setAdapter(studentPhonesAdapter);
 
+                //EMAILS
+                LinearLayoutManager emailsLayoutManager = new LinearLayoutManager(context){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                emailsLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                contactInfosViewHolder.emailList.setLayoutManager(emailsLayoutManager);
+                // todo get emails
+                // MOCK
+                List<String> emails = new ArrayList<>();
+                emails.add("exemple.1@etu.fr");
+                emails.add("exemple.2@etu.fr");
+                StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(emails);
+                contactInfosViewHolder.emailList.setAdapter(studentEmailsAdapter);
+
+                //ADDRESS
+                LinearLayoutManager addressLayoutManager = new LinearLayoutManager(context){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                addressLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                contactInfosViewHolder.addressList.setLayoutManager(addressLayoutManager);
+                // todo get addresses
+                // MOCK
+                List<String> address = new ArrayList<>();
+                address.add("21th Jump Street");
+                address.add("23th Jump Street");
+                StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(address);
+                contactInfosViewHolder.addressList.setAdapter(studentAddressAdapter);
                 break;
             case CARD_ABOUT:
+                AboutViewHolder aboutViewHolder = (AboutViewHolder) holder;
+                // PHONES
+                LinearLayoutManager websiteLayoutManager = new LinearLayoutManager(context){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                websiteLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                aboutViewHolder.websiteList.setLayoutManager(websiteLayoutManager);
+                // todo get websites
+                // MOCK
+                List<String> websites = new ArrayList<>();
+                websites.add("exemple.com");
+                websites.add("exemple.fr");
+                StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(websites);
+                aboutViewHolder.websiteList.setAdapter(studentWebsitesAdapter);
 
+                // todo set note
+                aboutViewHolder.note.setText("CECI est une note \nblablabla");
                 break;
             case CARD_SCHEDULES:
 
@@ -99,27 +173,27 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     static class ContactInfosViewHolder extends RecyclerView.ViewHolder {
-        ListView phoneNumberList;
-        ListView emailList;
-        ListView addressList;
+        RecyclerView phoneNumberList;
+        RecyclerView emailList;
+        RecyclerView addressList;
 
         public ContactInfosViewHolder(View itemView) {
             super(itemView);
-            phoneNumberList = (ListView) itemView.findViewById(R.id.item_studentdetails_contactinfos_phonenumberlist);
-            emailList = (ListView) itemView.findViewById(R.id.item_studentdetails_contactinfos_emaillist);
-            addressList = (ListView) itemView.findViewById(R.id.item_studentdetails_contactinfos_addresslist);
+            phoneNumberList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_contactinfos_phonenumberlist);
+            emailList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_contactinfos_emaillist);
+            addressList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_contactinfos_addresslist);
         }
     }
 
     static class AboutViewHolder extends RecyclerView.ViewHolder {
         TextView title;
-        ListView websiteList;
+        RecyclerView websiteList;
         TextView note;
 
         public AboutViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.item_studentdetails_about_title);
-            websiteList = (ListView) itemView.findViewById(R.id.item_studentdetails_about_websitelist);
+            websiteList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_about_websitelist);
             note = (TextView) itemView.findViewById(R.id.item_studentdetails_about_note);
         }
     }

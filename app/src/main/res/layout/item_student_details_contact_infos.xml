@@ -26,9 +26,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_call_black_24px"
-                    android:layout_margin="@dimen/default_material_margin_normal"/>
+                    android:layout_marginStart="@dimen/default_material_margin_normal"
+                    android:layout_marginEnd="@dimen/default_material_margin_normal"
+                    android:layout_marginTop="@dimen/default_material_margin_big"
+                    android:layout_marginBottom="@dimen/default_material_margin_big"
+                    android:tint="@color/colorAccent"/>
                 
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/item_studentdetails_contactinfos_phonenumberlist"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -52,9 +56,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_email_black_24px"
-                    android:layout_margin="@dimen/default_material_margin_normal"/>
+                    android:layout_marginStart="@dimen/default_material_margin_normal"
+                    android:layout_marginEnd="@dimen/default_material_margin_normal"
+                    android:layout_marginTop="@dimen/default_material_margin_big"
+                    android:layout_marginBottom="@dimen/default_material_margin_big"
+                    android:tint="@color/colorAccent"/>
 
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/item_studentdetails_contactinfos_emaillist"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -78,9 +86,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_location_on_black_24px"
-                    android:layout_margin="@dimen/default_material_margin_normal"/>
+                    android:layout_marginStart="@dimen/default_material_margin_normal"
+                    android:layout_marginEnd="@dimen/default_material_margin_normal"
+                    android:layout_marginTop="@dimen/default_material_margin_big"
+                    android:layout_marginBottom="@dimen/default_material_margin_big"
+                    android:tint="@color/colorAccent"/>
 
-                <ListView
+                <android.support.v7.widget.RecyclerView
                     android:id="@+id/item_studentdetails_contactinfos_addresslist"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
