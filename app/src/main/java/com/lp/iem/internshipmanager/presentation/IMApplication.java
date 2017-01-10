@@ -7,9 +7,8 @@ import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationPropertyDataM
 import com.lp.iem.internshipmanager.data.entity.mapper.ScheduleDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentPropertyBaseDataMapper;
-import com.lp.iem.internshipmanager.data.manager.DBFlowManager;
+import com.lp.iem.internshipmanager.data.manager.DBFlowManagerImpl;
 import com.lp.iem.internshipmanager.data.repository.DataRepository;
-import com.lp.iem.internshipmanager.presentation.model.student_property.OrganizationProperty;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowManager;
 
@@ -35,7 +34,7 @@ public class IMApplication extends Application {
     }
 
     private void initInjection() {
-        DBFlowManager dbFlowManager = new DBFlowManager();
+        DBFlowManagerImpl dbFlowManager = new DBFlowManagerImpl();
         FileDataMapper fileDataMapper= new FileDataMapper();
         OrganizationPropertyDataMapper organizationProperty= new OrganizationPropertyDataMapper();
         ScheduleDataMapper scheduleDataMapper=new ScheduleDataMapper();
