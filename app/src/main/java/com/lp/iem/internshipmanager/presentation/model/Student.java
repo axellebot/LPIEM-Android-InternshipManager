@@ -8,6 +8,7 @@ import com.lp.iem.internshipmanager.presentation.model.student_property.NumberPr
 import com.lp.iem.internshipmanager.presentation.model.student_property.OrganizationProperty;
 import com.lp.iem.internshipmanager.presentation.model.student_property.WebsiteProperty;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -21,9 +22,18 @@ public class Student {
     private List<AddressProperty> addressList;
     private List<OrganizationProperty> organizationList;
     private List<WebsiteProperty> webSites;
-
     private List<File> fileList;
     private List<Schedule> scheduleList;
+
+    public Student() {
+        this.emailList= new ArrayList<>();
+        this.numberList= new ArrayList<>();
+        this.addressList= new ArrayList<>();
+        this.organizationList= new ArrayList<>();
+        this.webSites= new ArrayList<>();
+        this.fileList= new ArrayList<>();
+        this.scheduleList= new ArrayList<>();
+    }
 
     public String getId() {
         return id;

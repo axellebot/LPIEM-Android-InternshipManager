@@ -17,6 +17,7 @@ import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.sql.language.SQLite;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Table(database = MyDatabase.class)
@@ -41,6 +42,44 @@ public class StudentEntity extends BaseModel {
     List<FileEntity> fileList;
     List<OrganizationPropertyEntity> organizationList;
     List<ScheduleEntity> scheduleList;
+
+    public StudentEntity() {
+        addressList=new ArrayList<>();
+        emailList=new ArrayList<>();
+        numberList=new ArrayList<>();
+        websiteList=new ArrayList<>();
+        fileList=new ArrayList<>();
+        organizationList=new ArrayList<>();
+        scheduleList=new ArrayList<>();
+    }
+
+    public void setAddressList(List<AddressPropertyEntity> addressList) {
+        this.addressList = addressList;
+    }
+
+    public void setEmailList(List<EmailPropertyEntity> emailList) {
+        this.emailList = emailList;
+    }
+
+    public void setNumberList(List<NumberPropertyEntity> numberList) {
+        this.numberList = numberList;
+    }
+
+    public void setWebsiteList(List<WebsitePropertyEntity> websiteList) {
+        this.websiteList = websiteList;
+    }
+
+    public void setFileList(List<FileEntity> fileList) {
+        this.fileList = fileList;
+    }
+
+    public void setOrganizationList(List<OrganizationPropertyEntity> organizationList) {
+        this.organizationList = organizationList;
+    }
+
+    public void setScheduleList(List<ScheduleEntity> scheduleList) {
+        this.scheduleList = scheduleList;
+    }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "addressList")
     public List<AddressPropertyEntity> getAddressList() {
@@ -118,4 +157,6 @@ public class StudentEntity extends BaseModel {
         }
         return scheduleList;
     }
+
+
 }

@@ -8,7 +8,7 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 @Table(database = MyDatabase.class)
