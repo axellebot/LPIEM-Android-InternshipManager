@@ -1,15 +1,10 @@
 package com.lp.iem.internshipmanager.data.entity;
 
-import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsiteEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.WebsitePropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_property.AddressPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_property.EmailPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_property.NumberPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_property.OrganizationPropertyEntity_Table;
+import com.lp.iem.internshipmanager.data.entity.student_property.WebsitePropertyEntity_Table;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -44,41 +39,13 @@ public class StudentEntity extends BaseModel {
     List<ScheduleEntity> scheduleList;
 
     public StudentEntity() {
-        addressList=new ArrayList<>();
-        emailList=new ArrayList<>();
-        numberList=new ArrayList<>();
-        websiteList=new ArrayList<>();
-        fileList=new ArrayList<>();
-        organizationList=new ArrayList<>();
-        scheduleList=new ArrayList<>();
-    }
-
-    public void setAddressList(List<AddressEntity> addressList) {
-        this.addressList = addressList;
-    }
-
-    public void setEmailList(List<EmailEntity> emailList) {
-        this.emailList = emailList;
-    }
-
-    public void setNumberList(List<NumberEntity> numberList) {
-        this.numberList = numberList;
-    }
-
-    public void setWebsiteList(List<WebsiteEntity> websiteList) {
-        this.websiteList = websiteList;
-    }
-
-    public void setFileList(List<FileEntity> fileList) {
-        this.fileList = fileList;
-    }
-
-    public void setOrganizationList(List<OrganizationEntity> organizationList) {
-        this.organizationList = organizationList;
-    }
-
-    public void setScheduleList(List<ScheduleEntity> scheduleList) {
-        this.scheduleList = scheduleList;
+        addressList = new ArrayList<>();
+        emailList = new ArrayList<>();
+        numberList = new ArrayList<>();
+        websiteList = new ArrayList<>();
+        fileList = new ArrayList<>();
+        organizationList = new ArrayList<>();
+        scheduleList = new ArrayList<>();
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "addressList")
@@ -92,6 +59,10 @@ public class StudentEntity extends BaseModel {
         return addressList;
     }
 
+    public void setAddressList(List<AddressEntity> addressList) {
+        this.addressList = addressList;
+    }
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "emailList")
     public List<EmailEntity> getEmailList() {
         if (emailList == null || emailList.isEmpty()) {
@@ -101,6 +72,10 @@ public class StudentEntity extends BaseModel {
                     .queryList();
         }
         return emailList;
+    }
+
+    public void setEmailList(List<EmailEntity> emailList) {
+        this.emailList = emailList;
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "numberList")
@@ -114,6 +89,10 @@ public class StudentEntity extends BaseModel {
         return numberList;
     }
 
+    public void setNumberList(List<NumberEntity> numberList) {
+        this.numberList = numberList;
+    }
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "websiteList")
     public List<WebsiteEntity> getWebsiteList() {
         if (websiteList == null || websiteList.isEmpty()) {
@@ -123,6 +102,10 @@ public class StudentEntity extends BaseModel {
                     .queryList();
         }
         return websiteList;
+    }
+
+    public void setWebsiteList(List<WebsiteEntity> websiteList) {
+        this.websiteList = websiteList;
     }
 
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "fileList")
@@ -136,6 +119,10 @@ public class StudentEntity extends BaseModel {
         return fileList;
     }
 
+    public void setFileList(List<FileEntity> fileList) {
+        this.fileList = fileList;
+    }
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "organizationList")
     public List<OrganizationEntity> getOrganizationList() {
         if (organizationList == null || organizationList.isEmpty()) {
@@ -147,6 +134,10 @@ public class StudentEntity extends BaseModel {
         return organizationList;
     }
 
+    public void setOrganizationList(List<OrganizationEntity> organizationList) {
+        this.organizationList = organizationList;
+    }
+
     @OneToMany(methods = {OneToMany.Method.ALL}, variableName = "scheduleList")
     public List<ScheduleEntity> getScheduleList() {
         if (scheduleList == null || scheduleList.isEmpty()) {
@@ -156,6 +147,10 @@ public class StudentEntity extends BaseModel {
                     .queryList();
         }
         return scheduleList;
+    }
+
+    public void setScheduleList(List<ScheduleEntity> scheduleList) {
+        this.scheduleList = scheduleList;
     }
 
 

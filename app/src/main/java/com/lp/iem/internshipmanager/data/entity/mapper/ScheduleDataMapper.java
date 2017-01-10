@@ -2,7 +2,6 @@ package com.lp.iem.internshipmanager.data.entity.mapper;
 
 import com.lp.iem.internshipmanager.data.entity.ScheduleEntity;
 import com.lp.iem.internshipmanager.presentation.model.Schedule;
-import com.lp.iem.internshipmanager.presentation.model.Student;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -2,18 +2,21 @@ package com.lp.iem.internshipmanager.presentation;
 
 import android.app.Application;
 
+import com.lp.iem.internshipmanager.data.entity.AddressEntity;
+import com.lp.iem.internshipmanager.data.entity.EmailEntity;
 import com.lp.iem.internshipmanager.data.entity.FileEntity;
+import com.lp.iem.internshipmanager.data.entity.NumberEntity;
+import com.lp.iem.internshipmanager.data.entity.OrganizationEntity;
 import com.lp.iem.internshipmanager.data.entity.ScheduleEntity;
 import com.lp.iem.internshipmanager.data.entity.StudentEntity;
+import com.lp.iem.internshipmanager.data.entity.mapper.AddressDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.EmailDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.FileDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.NumberDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.ScheduleDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentDataMapper;
-import com.lp.iem.internshipmanager.data.entity.mapper.StudentPropertyBaseDataMapper;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.AddressEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.EmailEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.NumberEntity;
-import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationEntity;
+import com.lp.iem.internshipmanager.data.entity.mapper.WebsiteDataMapper;
 import com.lp.iem.internshipmanager.data.manager.DBFlowManagerImpl;
 import com.lp.iem.internshipmanager.data.repository.DataRepository;
 import com.raizlabs.android.dbflow.config.FlowConfig;
@@ -45,14 +48,17 @@ public class IMApplication extends Application {
 
     private void initInjection() {
         DBFlowManagerImpl dbFlowManager = new DBFlowManagerImpl();
+
+        AddressDataMapper addressDataMapper = new AddressDataMapper();
+        EmailDataMapper emailDataMapper = new EmailDataMapper();
         FileDataMapper fileDataMapper = new FileDataMapper();
+        NumberDataMapper numberDataMapper = new NumberDataMapper();
         OrganizationDataMapper organizationDataMapper = new OrganizationDataMapper();
         ScheduleDataMapper scheduleDataMapper = new ScheduleDataMapper();
-        StudentPropertyBaseDataMapper studentPropertyBaseDataMapper = new StudentPropertyBaseDataMapper();
+        StudentDataMapper studentDataMapper = new StudentDataMapper();
+        WebsiteDataMapper websiteDataMapper = new WebsiteDataMapper();
 
-        StudentDataMapper studentDataMapper = new StudentDataMapper(fileDataMapper, organizationDataMapper, scheduleDataMapper, studentPropertyBaseDataMapper);
-
-        this.dataRepository = new DataRepository(dbFlowManager, studentDataMapper, scheduleDataMapper, fileDataMapper, organizationDataMapper, studentPropertyBaseDataMapper);
+        this.dataRepository = new DataRepository(dbFlowManager, addressDataMapper, emailDataMapper, fileDataMapper, numberDataMapper, organizationDataMapper, scheduleDataMapper, studentDataMapper, websiteDataMapper);
     }
 
     private void initDBFlow() {
@@ -64,7 +70,7 @@ public class IMApplication extends Application {
         //testDBFlow();
     }
 
-    private void testDBFlow(){
+    private void testDBFlow() {
         //TEST
         StudentEntity studentEntity = new StudentEntity();
         studentEntity.fname = "Fname";
@@ -105,17 +111,17 @@ public class IMApplication extends Application {
 
         //numbers
         NumberEntity numberEntity = new NumberEntity();
-        numberEntity.id= UUID.randomUUID().toString();
-        numberEntity.label="Numero uno";
-        numberEntity.value="+33 6 05 05 05 05";
-        numberEntity.student=studentEntity;
+        numberEntity.id = UUID.randomUUID().toString();
+        numberEntity.label = "Numero uno";
+        numberEntity.value = "+33 6 05 05 05 05";
+        numberEntity.student = studentEntity;
         studentEntity.getNumberList().add(numberEntity);
 
         //organnization
         OrganizationEntity organizationEntity = new OrganizationEntity();
-        organizationEntity.id=UUID.randomUUID().toString();
-        organizationEntity.name="L'entreprise";
-        organizationEntity.student=studentEntity;
+        organizationEntity.id = UUID.randomUUID().toString();
+        organizationEntity.name = "L'entreprise";
+        organizationEntity.student = studentEntity;
         studentEntity.getOrganizationList().add(organizationEntity);
 
         studentEntity.save();

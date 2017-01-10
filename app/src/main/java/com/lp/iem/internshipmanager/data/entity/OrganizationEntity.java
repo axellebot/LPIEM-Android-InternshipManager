@@ -1,7 +1,5 @@
-package com.lp.iem.internshipmanager.data.entity.student_porperty;
+package com.lp.iem.internshipmanager.data.entity;
 
-import com.lp.iem.internshipmanager.data.entity.MyDatabase;
-import com.lp.iem.internshipmanager.data.entity.StudentEntity;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.ForeignKey;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;

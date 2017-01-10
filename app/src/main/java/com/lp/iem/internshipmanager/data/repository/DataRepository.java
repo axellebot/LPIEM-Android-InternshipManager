@@ -3,11 +3,14 @@ package com.lp.iem.internshipmanager.data.repository;
 import android.support.annotation.NonNull;
 
 import com.lp.iem.internshipmanager.data.entity.StudentEntity;
+import com.lp.iem.internshipmanager.data.entity.mapper.AddressDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.EmailDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.FileDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.NumberDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.OrganizationDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.ScheduleDataMapper;
 import com.lp.iem.internshipmanager.data.entity.mapper.StudentDataMapper;
-import com.lp.iem.internshipmanager.data.entity.mapper.StudentPropertyBaseDataMapper;
+import com.lp.iem.internshipmanager.data.entity.mapper.WebsiteDataMapper;
 import com.lp.iem.internshipmanager.data.manager.DBFlowManagerImpl;
 import com.lp.iem.internshipmanager.presentation.model.Student;
 
@@ -17,21 +20,27 @@ import rx.Observable;
 import rx.functions.Func1;
 
 public class DataRepository {
-
     private DBFlowManagerImpl dbFlowManager;
-    private StudentDataMapper studentDataMapper;
-    private ScheduleDataMapper scheduleDataMapper;
-    private FileDataMapper fileDataMapper;
-    private OrganizationDataMapper organizationProperty;
-    private StudentPropertyBaseDataMapper studentPropertyBaseDataMapper;
 
-    public DataRepository(@NonNull DBFlowManagerImpl dbFlowManager, @NonNull StudentDataMapper studentDataMapper, @NonNull ScheduleDataMapper scheduleDataMapper, @NonNull FileDataMapper fileDataMapper, @NonNull OrganizationDataMapper organizationProperty, @NonNull StudentPropertyBaseDataMapper studentPropertyBaseDataMapper) {
+    private AddressDataMapper addressDataMapper;
+    private EmailDataMapper emailDataMapper;
+    private FileDataMapper fileDataMapper;
+    private NumberDataMapper numberDataMapper;
+    private OrganizationDataMapper organizationDataMapper;
+    private ScheduleDataMapper scheduleDataMapper;
+    private StudentDataMapper studentDataMapper;
+    private WebsiteDataMapper websiteDataMapper;
+
+    public DataRepository(DBFlowManagerImpl dbFlowManager,AddressDataMapper addressDataMapper, EmailDataMapper emailDataMapper, FileDataMapper fileDataMapper, NumberDataMapper numberDataMapper, OrganizationDataMapper organizationDataMapper, ScheduleDataMapper scheduleDataMapper, StudentDataMapper studentDataMapper, WebsiteDataMapper websiteDataMapper) {
         this.dbFlowManager = dbFlowManager;
-        this.studentDataMapper = studentDataMapper;
-        this.scheduleDataMapper = scheduleDataMapper;
+        this.addressDataMapper = addressDataMapper;
+        this.emailDataMapper = emailDataMapper;
         this.fileDataMapper = fileDataMapper;
-        this.organizationProperty = organizationProperty;
-        this.studentPropertyBaseDataMapper = studentPropertyBaseDataMapper;
+        this.numberDataMapper = numberDataMapper;
+        this.organizationDataMapper = organizationDataMapper;
+        this.scheduleDataMapper = scheduleDataMapper;
+        this.studentDataMapper = studentDataMapper;
+        this.websiteDataMapper = websiteDataMapper;
     }
 
     public Observable<List<Student>> getStudents() {

@@ -1,6 +1,6 @@
 package com.lp.iem.internshipmanager.data.entity.mapper;
 
-import com.lp.iem.internshipmanager.data.entity.student_porperty.OrganizationEntity;
+import com.lp.iem.internshipmanager.data.entity.OrganizationEntity;
 import com.lp.iem.internshipmanager.presentation.model.student_property.Organization;
 
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ public class OrganizationDataMapper {
         }
         return organizationList;
     }
+
     public Organization transform(OrganizationEntity organizationEntity){
         Organization organization = new Organization();
         organization.setId(organizationEntity.id);
