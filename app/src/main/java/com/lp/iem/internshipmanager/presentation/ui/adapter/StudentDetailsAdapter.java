@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -132,7 +133,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 contactInfosViewHolder.addressList.setAdapter(studentAddressAdapter);
                 break;
             case CARD_ABOUT:
-                AboutViewHolder aboutViewHolder = (AboutViewHolder) holder;
+                final AboutViewHolder aboutViewHolder = (AboutViewHolder) holder;
                 // PHONES
                 LinearLayoutManager websiteLayoutManager = new LinearLayoutManager(context){
                     @Override
@@ -152,6 +153,24 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
                 // todo set note
                 aboutViewHolder.note.setText("Ceci  est une note \nblablabla");
+                aboutViewHolder.note.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        aboutViewHolder.note.setVisibility(View.GONE);
+                        aboutViewHolder.noteEdit.setVisibility(View.VISIBLE);
+                        aboutViewHolder.noteEdit.setText(aboutViewHolder.note.getText());
+                        aboutViewHolder.applyButton.setVisibility(View.VISIBLE);
+                    }
+                });
+                aboutViewHolder.applyButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        aboutViewHolder.noteEdit.setVisibility(View.GONE);
+                        aboutViewHolder.note.setText(aboutViewHolder.noteEdit.getText());
+                        aboutViewHolder.note.setVisibility(View.VISIBLE);
+                        aboutViewHolder.applyButton.setVisibility(View.GONE);
+                    }
+                });
                 break;
             case CARD_SCHEDULES:
                 ScheduleListViewHolder scheduleListViewHolder = (ScheduleListViewHolder) holder;
@@ -227,12 +246,16 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
         TextView title;
         RecyclerView websiteList;
         TextView note;
+        EditText noteEdit;
+        TextView applyButton;
 
         public AboutViewHolder(View itemView) {
             super(itemView);
             title = (TextView) itemView.findViewById(R.id.item_studentdetails_about_title);
             websiteList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_about_websitelist);
             note = (TextView) itemView.findViewById(R.id.item_studentdetails_about_note);
+            noteEdit = (EditText) itemView.findViewById(R.id.item_studentdetails_about_note_edit);
+            applyButton = (TextView) itemView.findViewById(R.id.item_studentdetails_about_note_edit_apply_button);
         }
     }
 

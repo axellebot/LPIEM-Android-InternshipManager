@@ -2,25 +2,18 @@ package com.lp.iem.internshipmanager.presentation.ui.fragment;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.arlib.floatingsearchview.FloatingSearchView;
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.model.Contact;
 import com.lp.iem.internshipmanager.presentation.presenter.StudentDetailsPresenter;
-import com.lp.iem.internshipmanager.presentation.presenter.StudentListPresenter;
+import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.adapter.StudentDetailsAdapter;
-import com.lp.iem.internshipmanager.presentation.ui.adapter.StudentListAdapter;
 import com.lp.iem.internshipmanager.presentation.ui.view.StudentDetailsView;
-import com.lp.iem.internshipmanager.presentation.ui.view.StudentListView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -46,6 +39,8 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
         View view = inflater.inflate(R.layout.fragment_student_details, container, false);
         ButterKnife.bind(this, view);
         initializeInjection();
+
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Students");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);

@@ -47,7 +47,8 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
                 android:clickable="true"
-                android:background="?attr/selectableItemBackground">
+                android:background="?attr/selectableItemBackground"
+                android:animateLayoutChanges="true">
 
                 <TextView
                     android:layout_width="match_parent"
@@ -64,6 +65,26 @@
                     android:layout_marginBottom="@dimen/default_material_margin_normal"
                     android:layout_marginEnd="@dimen/default_material_margin_normal"
                     android:text="This is a \nnote about \nthe student"/>
+
+                <EditText
+                    android:id="@+id/item_studentdetails_about_note_edit"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_material_margin_normal"
+                    android:layout_marginBottom="@dimen/default_material_margin_normal"
+                    android:layout_marginEnd="@dimen/default_material_margin_normal"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:id="@+id/item_studentdetails_about_note_edit_apply_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_margin="@dimen/default_material_margin_small"
+                    android:text="APPLY"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="12sp"
+                    android:visibility="gone"/>
 
             </LinearLayout>
 
