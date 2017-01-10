@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ScheduleDataMapper {
-    public List<Schedule> transform(List<ScheduleEntity> scheduleEntityList){
+    public List<Schedule> transform(List<ScheduleEntity> scheduleEntityList) {
         List<Schedule> schedulesList = new ArrayList<>();
-        for(ScheduleEntity scheduleEntity : scheduleEntityList){
+        for (ScheduleEntity scheduleEntity : scheduleEntityList) {
             schedulesList.add(transform(scheduleEntity));
         }
         return schedulesList;
     }
-    public Schedule transform(ScheduleEntity scheduleEntity){
+
+    public Schedule transform(ScheduleEntity scheduleEntity) {
         Schedule schedule = new Schedule();
         schedule.setId(scheduleEntity.id);
         schedule.setLabel(scheduleEntity.label);

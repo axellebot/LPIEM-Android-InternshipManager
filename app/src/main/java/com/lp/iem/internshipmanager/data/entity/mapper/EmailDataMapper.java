@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EmailDataMapper {
-    public List<Email> transform(List<EmailEntity> emailEntityList){
+    public List<Email> transform(List<EmailEntity> emailEntityList) {
         List<Email> emailList = new ArrayList<>();
-        for(EmailEntity emailEntity : emailEntityList){
+        for (EmailEntity emailEntity : emailEntityList) {
             emailList.add(transform(emailEntity));
         }
         return emailList;
     }
-    public Email transform(EmailEntity emailEntity){
+
+    public Email transform(EmailEntity emailEntity) {
         Email email = new Email();
         email.setId(emailEntity.id);
         email.setLabel(emailEntity.label);

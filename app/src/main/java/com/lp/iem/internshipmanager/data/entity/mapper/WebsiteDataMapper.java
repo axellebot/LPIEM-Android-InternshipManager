@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebsiteDataMapper {
-    public List<Website> transform(List<WebsiteEntity> websiteEnityList){
+    public List<Website> transform(List<WebsiteEntity> websiteEnityList) {
         List<Website> websiteList = new ArrayList<>();
-        for(WebsiteEntity websiteEntity : websiteEnityList){
+        for (WebsiteEntity websiteEntity : websiteEnityList) {
             websiteList.add(transform(websiteEntity));
         }
         return websiteList;
     }
 
-    public Website transform(WebsiteEntity websiteEntity){
+    public Website transform(WebsiteEntity websiteEntity) {
         Website website = new Website();
         website.setId(websiteEntity.id);
         website.setStudentId(websiteEntity.student.id);

@@ -7,15 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrganizationDataMapper {
-    public List<Organization> transform(List<OrganizationEntity> organizationEntityList){
+    public List<Organization> transform(List<OrganizationEntity> organizationEntityList) {
         List<Organization> organizationList = new ArrayList<>();
-        for(OrganizationEntity organizationEntity : organizationEntityList){
+        for (OrganizationEntity organizationEntity : organizationEntityList) {
             organizationList.add(transform(organizationEntity));
         }
         return organizationList;
     }
 
-    public Organization transform(OrganizationEntity organizationEntity){
+    public Organization transform(OrganizationEntity organizationEntity) {
         Organization organization = new Organization();
         organization.setId(organizationEntity.id);
         organization.setName(organizationEntity.name);

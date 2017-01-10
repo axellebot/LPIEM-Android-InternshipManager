@@ -7,14 +7,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddressDataMapper {
-    public List<Address> transform(List<AddressEntity> addressEntities){
+    public List<Address> transform(List<AddressEntity> addressEntities) {
         List<Address> addressList = new ArrayList<>();
-        for(AddressEntity addressEntity : addressEntities){
+        for (AddressEntity addressEntity : addressEntities) {
             addressList.add(transform(addressEntity));
         }
         return addressList;
     }
-    public Address transform(AddressEntity addressEntity){
+
+    public Address transform(AddressEntity addressEntity) {
         Address address = new Address();
         address.setId(addressEntity.id);
         address.setLabel(addressEntity.label);

@@ -1,10 +1,5 @@
 package com.lp.iem.internshipmanager.data.entity;
 
-import com.lp.iem.internshipmanager.data.entity.student_property.AddressPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_property.EmailPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_property.NumberPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_property.OrganizationPropertyEntity_Table;
-import com.lp.iem.internshipmanager.data.entity.student_property.WebsitePropertyEntity_Table;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.OneToMany;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -53,7 +48,7 @@ public class StudentEntity extends BaseModel {
         if (addressList == null || addressList.isEmpty()) {
             addressList = SQLite.select()
                     .from(AddressEntity.class)
-                    .where(AddressPropertyEntity_Table.student_id.eq(id))
+                    .where(AddressEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return addressList;
@@ -68,7 +63,7 @@ public class StudentEntity extends BaseModel {
         if (emailList == null || emailList.isEmpty()) {
             emailList = SQLite.select()
                     .from(EmailEntity.class)
-                    .where(EmailPropertyEntity_Table.student_id.eq(id))
+                    .where(EmailEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return emailList;
@@ -83,7 +78,7 @@ public class StudentEntity extends BaseModel {
         if (numberList == null || numberList.isEmpty()) {
             numberList = SQLite.select()
                     .from(NumberEntity.class)
-                    .where(NumberPropertyEntity_Table.student_id.eq(id))
+                    .where(NumberEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return numberList;
@@ -98,7 +93,7 @@ public class StudentEntity extends BaseModel {
         if (websiteList == null || websiteList.isEmpty()) {
             websiteList = SQLite.select()
                     .from(WebsiteEntity.class)
-                    .where(WebsitePropertyEntity_Table.student_id.eq(id))
+                    .where(WebsiteEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return websiteList;
@@ -128,7 +123,7 @@ public class StudentEntity extends BaseModel {
         if (organizationList == null || organizationList.isEmpty()) {
             organizationList = SQLite.select()
                     .from(OrganizationEntity.class)
-                    .where(OrganizationPropertyEntity_Table.student_id.eq(id))
+                    .where(OrganizationEntity_Table.student_id.eq(id))
                     .queryList();
         }
         return organizationList;
