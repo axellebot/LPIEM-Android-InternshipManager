@@ -43,7 +43,7 @@ public class IMApplication extends Application {
 
         StudentDataMapper studentDataMapper = new StudentDataMapper(fileDataMapper,organizationProperty,scheduleDataMapper,studentPropertyBaseDataMapper);
 
-        this.dataRepository = new DataRepository(dbFlowManager, studentDataMapper, scheduleDataMapper);
+        this.dataRepository = new DataRepository(dbFlowManager, studentDataMapper,scheduleDataMapper, fileDataMapper, organizationProperty, studentPropertyBaseDataMapper);
     }
 
     private void initDBFlow() {

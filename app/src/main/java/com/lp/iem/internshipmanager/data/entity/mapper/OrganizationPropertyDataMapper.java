@@ -20,7 +20,7 @@ public class OrganizationPropertyDataMapper {
         OrganizationProperty organizationProperty = new OrganizationProperty();
         organizationProperty.setId(organizationPropertyEntity.id);
         organizationProperty.setName(organizationPropertyEntity.name);
-        organizationProperty.setStudentId(organizationProperty.getStudentId());
+        organizationProperty.setStudentId(organizationPropertyEntity.student.id);
         return organizationProperty;
     }
 }
