@@ -1,7 +1,7 @@
 package com.lp.iem.internshipmanager.data.entity.mapper;
 
 import com.lp.iem.internshipmanager.data.entity.EmailEntity;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Email;
+import com.lp.iem.internshipmanager.presentation.model.Email;
 
 import java.util.ArrayList;
 import java.util.List;

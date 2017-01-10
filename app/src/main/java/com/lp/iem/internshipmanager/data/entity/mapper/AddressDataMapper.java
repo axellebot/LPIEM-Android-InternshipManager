@@ -1,7 +1,7 @@
 package com.lp.iem.internshipmanager.data.entity.mapper;
 
 import com.lp.iem.internshipmanager.data.entity.AddressEntity;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Address;
+import com.lp.iem.internshipmanager.presentation.model.Address;
 
 import java.util.ArrayList;
 import java.util.List;

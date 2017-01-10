@@ -1,7 +1,7 @@
 package com.lp.iem.internshipmanager.data.entity.mapper;
 
 import com.lp.iem.internshipmanager.data.entity.WebsiteEntity;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Website;
+import com.lp.iem.internshipmanager.presentation.model.Website;
 
 import java.util.ArrayList;
 import java.util.List;

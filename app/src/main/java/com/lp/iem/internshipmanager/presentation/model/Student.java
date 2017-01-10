@@ -1,11 +1,5 @@
 package com.lp.iem.internshipmanager.presentation.model;
 
-import com.lp.iem.internshipmanager.presentation.model.student_property.Address;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Email;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Number;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Organization;
-import com.lp.iem.internshipmanager.presentation.model.student_property.Website;
-
 import java.util.ArrayList;
 import java.util.List;
 

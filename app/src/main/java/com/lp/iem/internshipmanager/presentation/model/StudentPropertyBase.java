@@ -1,4 +1,4 @@
-package com.lp.iem.internshipmanager.presentation.model.student_property;
+package com.lp.iem.internshipmanager.presentation.model;
 
 public abstract class StudentPropertyBase {
     private String id;
