@@ -4,9 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.List;
 
@@ -17,9 +19,11 @@ import java.util.List;
 public class StudentWebsitesAdapter extends RecyclerView.Adapter<StudentWebsitesAdapter.WebsiteViewHolder> {
 
     private List<String> websiteList;
+    private ClickCallbackListener clickCallbackListener;
 
-    public StudentWebsitesAdapter(List<String> websiteList) {
+    public StudentWebsitesAdapter(List<String> websiteList, ClickCallbackListener clickCallbackListener) {
         this.websiteList = websiteList;
+        this.clickCallbackListener = clickCallbackListener;
     }
 
     @Override
@@ -29,7 +33,13 @@ public class StudentWebsitesAdapter extends RecyclerView.Adapter<StudentWebsites
     }
 
     @Override
-    public void onBindViewHolder(WebsiteViewHolder holder, int position) {
+    public void onBindViewHolder(WebsiteViewHolder holder, final int position) {
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickCallbackListener.openWebsite(websiteList.get(position));
+            }
+        });
         holder.website.setText(websiteList.get(position));
     }
 
@@ -39,11 +49,13 @@ public class StudentWebsitesAdapter extends RecyclerView.Adapter<StudentWebsites
     }
 
     static class WebsiteViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout item;
         TextView website;
         TextView type;
 
         public WebsiteViewHolder(View itemView) {
             super(itemView);
+            item = (LinearLayout) itemView.findViewById(R.id.item_website_item);
             website = (TextView) itemView.findViewById(R.id.item_website_website);
             type = (TextView) itemView.findViewById(R.id.item_website_type);
         }

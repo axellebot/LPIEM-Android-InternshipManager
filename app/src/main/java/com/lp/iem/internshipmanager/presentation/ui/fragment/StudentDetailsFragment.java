@@ -50,7 +50,7 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        studentDetailsAdapter = new StudentDetailsAdapter(new Contact("Marty", "MacFly"));
+        studentDetailsAdapter = new StudentDetailsAdapter(new Contact("Marty", "MacFly"), presenter);
         recyclerView.setAdapter(studentDetailsAdapter);
 
         return view;
@@ -82,11 +82,11 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
 
     @Override
     public void displayDetails(Contact student) {
-        studentDetailsAdapter = new StudentDetailsAdapter(student);
+        studentDetailsAdapter = new StudentDetailsAdapter(student, presenter);
         recyclerView.setAdapter(studentDetailsAdapter);
     }
 
     private void initializeInjection() {
-        presenter = new StudentDetailsPresenter(this, new Contact("Marty", "MacFly"));
+        presenter = new StudentDetailsPresenter(getActivity(), this, new Contact("Marty", "MacFly"));
     }
 }

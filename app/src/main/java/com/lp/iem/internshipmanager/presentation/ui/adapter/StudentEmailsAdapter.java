@@ -4,9 +4,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.List;
 
@@ -17,9 +19,11 @@ import java.util.List;
 public class StudentEmailsAdapter extends RecyclerView.Adapter<StudentEmailsAdapter.EmailViewHolder> {
 
     private List<String> emailList;
+    private ClickCallbackListener clickCallbackListener;
 
-    public StudentEmailsAdapter(List<String> emailList) {
+    public StudentEmailsAdapter(List<String> emailList, ClickCallbackListener clickCallbackListener) {
         this.emailList = emailList;
+        this.clickCallbackListener = clickCallbackListener;
     }
 
     @Override
@@ -29,7 +33,13 @@ public class StudentEmailsAdapter extends RecyclerView.Adapter<StudentEmailsAdap
     }
 
     @Override
-    public void onBindViewHolder(EmailViewHolder holder, int position) {
+    public void onBindViewHolder(EmailViewHolder holder, final int position) {
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickCallbackListener.sendMessageToEmail(emailList.get(position));
+            }
+        });
         holder.email.setText(emailList.get(position));
     }
 
@@ -39,11 +49,13 @@ public class StudentEmailsAdapter extends RecyclerView.Adapter<StudentEmailsAdap
     }
 
     static class EmailViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout item;
         TextView email;
         TextView type;
 
         public EmailViewHolder(View itemView) {
             super(itemView);
+            item = (LinearLayout) itemView.findViewById(R.id.item_email_item);
             email = (TextView) itemView.findViewById(R.id.item_email_email);
             type = (TextView) itemView.findViewById(R.id.item_email_type);
         }

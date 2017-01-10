@@ -4,10 +4,13 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.List;
 
@@ -18,9 +21,11 @@ import java.util.List;
 public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdapter.PhoneViewHolder> {
 
     private List<String> phoneList;
+    private ClickCallbackListener clickCallbackListener;
 
-    public StudentPhonesAdapter(List<String> phoneList) {
+    public StudentPhonesAdapter(List<String> phoneList, ClickCallbackListener clickCallbackListener) {
         this.phoneList = phoneList;
+        this.clickCallbackListener = clickCallbackListener;
     }
 
     @Override
@@ -30,8 +35,20 @@ public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdap
     }
 
     @Override
-    public void onBindViewHolder(StudentPhonesAdapter.PhoneViewHolder holder, int position) {
+    public void onBindViewHolder(StudentPhonesAdapter.PhoneViewHolder holder, final int position) {
+        holder.item.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickCallbackListener.callPhoneNumber(phoneList.get(position));
+            }
+        });
         holder.phone.setText(phoneList.get(position));
+        holder.messageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clickCallbackListener.sendMessageToPhoneNumber(phoneList.get(position));
+            }
+        });
     }
 
     @Override
@@ -40,13 +57,17 @@ public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdap
     }
 
     static class PhoneViewHolder extends RecyclerView.ViewHolder {
+        LinearLayout item;
         TextView phone;
         TextView type;
+        ImageView messageButton;
 
         public PhoneViewHolder(View itemView) {
             super(itemView);
+            item = (LinearLayout) itemView.findViewById(R.id.item_phonenumber_item);
             phone = (TextView) itemView.findViewById(R.id.item_phonenumber_number);
             type = (TextView) itemView.findViewById(R.id.item_phonenumber_type);
+            messageButton = (ImageView) itemView.findViewById(R.id.item_phonenumber_message_button);
         }
     }
 }

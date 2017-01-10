@@ -42,21 +42,30 @@
                 android:layout_height="@dimen/list_divider_height"
                 android:background="@color/listDividerColor"/>
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_material_margin_small"
-                android:text="Note"
-                android:textColor="@color/black"/>
+                android:orientation="vertical"
+                android:clickable="true"
+                android:background="?attr/selectableItemBackground">
 
-            <TextView
-                android:id="@+id/item_studentdetails_about_note"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/default_material_margin_small"
-                android:layout_marginBottom="@dimen/default_material_margin_small"
-                android:layout_marginEnd="@dimen/default_material_margin_small"
-                android:text="This is a \nnote about \nthe student"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/default_material_margin_normal"
+                    android:text="Note"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:id="@+id/item_studentdetails_about_note"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/default_material_margin_normal"
+                    android:layout_marginBottom="@dimen/default_material_margin_normal"
+                    android:layout_marginEnd="@dimen/default_material_margin_normal"
+                    android:text="This is a \nnote about \nthe student"/>
+
+            </LinearLayout>
 
         </LinearLayout>
 

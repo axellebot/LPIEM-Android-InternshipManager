@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,8 +34,11 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private Context context;
 
-    public StudentDetailsAdapter(Contact student) {
+    private ClickCallbackListener clickCallbackListener;
+
+    public StudentDetailsAdapter(Contact student, ClickCallbackListener clickCallbackListener) {
         this.student = student;
+        this.clickCallbackListener= clickCallbackListener;
     }
 
     @Override
@@ -88,9 +92,9 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 // todo get phones
                 // MOCK
                 List<String> phones = new ArrayList<>();
-                phones.add("0678451265");
-                phones.add("0678451266");
-                StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(phones);
+                phones.add("0683344358");
+                phones.add("0647796340");
+                StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(phones, clickCallbackListener);
                 contactInfosViewHolder.phoneNumberList.setAdapter(studentPhonesAdapter);
 
                 //EMAILS
@@ -107,7 +111,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 List<String> emails = new ArrayList<>();
                 emails.add("exemple.1@etu.fr");
                 emails.add("exemple.2@etu.fr");
-                StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(emails);
+                StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(emails, clickCallbackListener);
                 contactInfosViewHolder.emailList.setAdapter(studentEmailsAdapter);
 
                 //ADDRESS
@@ -122,9 +126,9 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 // todo get addresses
                 // MOCK
                 List<String> address = new ArrayList<>();
-                address.add("21th Jump Street");
-                address.add("23th Jump Street");
-                StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(address);
+                address.add("71 rue Peter Fink, Bourg-en-Bresse 01000 France");
+                address.add("16 rue Juliette Récamier, Bourg-en-Bresse 01000 France");
+                StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(address, clickCallbackListener);
                 contactInfosViewHolder.addressList.setAdapter(studentAddressAdapter);
                 break;
             case CARD_ABOUT:
@@ -141,19 +145,53 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                 // todo get websites
                 // MOCK
                 List<String> websites = new ArrayList<>();
-                websites.add("exemple.com");
-                websites.add("exemple.fr");
-                StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(websites);
+                websites.add("google.com");
+                websites.add("iut.univ-lyon1.fr");
+                StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(websites, clickCallbackListener);
                 aboutViewHolder.websiteList.setAdapter(studentWebsitesAdapter);
 
                 // todo set note
-                aboutViewHolder.note.setText("CECI est une note \nblablabla");
+                aboutViewHolder.note.setText("Ceci  est une note \nblablabla");
                 break;
             case CARD_SCHEDULES:
-
+                ScheduleListViewHolder scheduleListViewHolder = (ScheduleListViewHolder) holder;
+                // PHONES
+                LinearLayoutManager schedulesLayoutManager = new LinearLayoutManager(context){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                schedulesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                scheduleListViewHolder.scheduleList.setLayoutManager(schedulesLayoutManager);
+                // todo get schedules
+                // MOCK
+                List<String> schedules = new ArrayList<>();
+                schedules.add("21 oct. 2016");
+                schedules.add("29 nov. 2016");
+                schedules.add("11 dec. 2016");
+                StudentSchedulesAdapter studentSchedulesAdapter = new StudentSchedulesAdapter(schedules);
+                scheduleListViewHolder.scheduleList.setAdapter(studentSchedulesAdapter);
                 break;
             case CARD_FILES:
-
+                FileListViewHolder fileListViewHolder = (FileListViewHolder) holder;
+                // PHONES
+                LinearLayoutManager filesLayoutManager = new LinearLayoutManager(context){
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                filesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                fileListViewHolder.fileList.setLayoutManager(filesLayoutManager);
+                // todo get schedules
+                // MOCK
+                List<String> files = new ArrayList<>();
+                files.add("file_1.txt");
+                files.add("file2.pdf");
+                files.add("file-3.docx");
+                StudentFilesAdapter studentFilesAdapter = new StudentFilesAdapter(files);
+                fileListViewHolder.fileList.setAdapter(studentFilesAdapter);
                 break;
         }
     }

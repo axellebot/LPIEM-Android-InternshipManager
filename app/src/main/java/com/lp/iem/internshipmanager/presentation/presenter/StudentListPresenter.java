@@ -68,8 +68,8 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
     private void getStudentListMock() {
         studentList = new ArrayList<>();
         studentList.add(new Contact("Marty", "MacFly"));
-        studentList.add(new Contact("José", "Garcia"));
-        studentList.add(new Contact("Jean-Marie", "Lepen"));
+        studentList.add(new Contact("Alexandre", "Astier"));
+        studentList.add(new Contact("Rick", "Sanchez"));
         studentListView.displayStudentList(sortList(studentList));
     }
 
