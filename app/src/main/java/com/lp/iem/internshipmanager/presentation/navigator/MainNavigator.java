@@ -1,12 +1,12 @@
 package com.lp.iem.internshipmanager.presentation.navigator;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
 import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentDetailsFragment;
@@ -81,7 +81,17 @@ public class MainNavigator implements BaseActivityLifeCycle {
 
     public void displayStudentDetailsFragment(String studentId) {
         StudentDetailsFragment studentDetailsFragment = StudentDetailsFragment.newInstance(studentId);
-        fragmentTransactionAdd(studentDetailsFragment);
+        if(currentFragmentId != FRAGMENT_STUDENT_DETAILS) {
+            if (isTabletLandscape()) {
+                fragmentTransactionAddOnSecond(studentDetailsFragment);
+            } else {
+                fragmentTransactionAdd(studentDetailsFragment);
+            }
+        } else {
+            if (isTabletLandscape()) {
+                fragmentTransactionReplaceOnSecond(studentDetailsFragment);
+            }
+        }
         currentFragmentId = FRAGMENT_STUDENT_DETAILS;
     }
 
@@ -101,5 +111,23 @@ public class MainNavigator implements BaseActivityLifeCycle {
         fragmentTransaction.addToBackStack(fragment.getClass().getName());
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.commit();
+    }
+
+    private void fragmentTransactionReplaceOnSecond(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.main_activity_fragment_container2, fragment, fragment.getClass().getName());
+        fragmentTransaction.commit();
+    }
+
+    private void fragmentTransactionAddOnSecond(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.add(R.id.main_activity_fragment_container2, fragment, fragment.getClass().getName());
+        fragmentTransaction.addToBackStack(fragment.getClass().getName());
+        fragmentTransaction.commit();
+    }
+
+    private boolean isTabletLandscape() {
+        return /*(activity.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE &&*/
+                (activity.getResources().getConfiguration().orientation) == Configuration.ORIENTATION_LANDSCAPE;
     }
 }
