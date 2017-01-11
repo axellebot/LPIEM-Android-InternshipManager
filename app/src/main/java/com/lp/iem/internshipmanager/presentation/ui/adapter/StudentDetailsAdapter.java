@@ -187,13 +187,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     };
                     schedulesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                     scheduleListViewHolder.scheduleList.setLayoutManager(schedulesLayoutManager);
-                    // todo get schedules
-                    // MOCK
-                    List<String> schedules = new ArrayList<>();
-                    schedules.add("21 oct. 2016");
-                    schedules.add("29 nov. 2016");
-                    schedules.add("11 dec. 2016");
-                    StudentSchedulesAdapter studentSchedulesAdapter = new StudentSchedulesAdapter(schedules);
+                    StudentSchedulesAdapter studentSchedulesAdapter = new StudentSchedulesAdapter(student.getScheduleList());
                     scheduleListViewHolder.scheduleList.setAdapter(studentSchedulesAdapter);
                     break;
                 case CARD_FILES:
@@ -206,13 +200,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     };
                     filesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
                     fileListViewHolder.fileList.setLayoutManager(filesLayoutManager);
-                    // todo get schedules
-                    // MOCK
-                    List<String> files = new ArrayList<>();
-                    files.add("file_1.txt");
-                    files.add("file2.pdf");
-                    files.add("file-3.docx");
-                    StudentFilesAdapter studentFilesAdapter = new StudentFilesAdapter(files);
+                    StudentFilesAdapter studentFilesAdapter = new StudentFilesAdapter(student.getFileList());
                     fileListViewHolder.fileList.setAdapter(studentFilesAdapter);
                     break;
             }

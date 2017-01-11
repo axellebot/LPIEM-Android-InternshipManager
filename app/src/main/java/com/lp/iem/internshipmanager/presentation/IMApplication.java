@@ -103,7 +103,7 @@ public class IMApplication extends Application {
         ScheduleEntity scheduleEntity = new ScheduleEntity();
         scheduleEntity.id = UUID.randomUUID().toString();
         scheduleEntity.date = new Date();
-        scheduleEntity.label = "Label RDV";
+        scheduleEntity.label = "21 oct. 2016";
         scheduleEntity.description = "Description RDV";
         scheduleEntity.student=studentEntity;
         studentEntity.getScheduleList().add(scheduleEntity);

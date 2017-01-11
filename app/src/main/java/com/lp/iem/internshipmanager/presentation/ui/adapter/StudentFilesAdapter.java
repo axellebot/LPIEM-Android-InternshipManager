@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.model.File;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class StudentFilesAdapter extends RecyclerView.Adapter<StudentFilesAdapter.FilesViewHolder> {
 
-    private List<String> fileList;
+    private List<File> fileList;
 
-    public StudentFilesAdapter(List<String> fileList) {
+    public StudentFilesAdapter(List<File> fileList) {
         this.fileList = fileList;
     }
 
@@ -30,7 +31,8 @@ public class StudentFilesAdapter extends RecyclerView.Adapter<StudentFilesAdapte
 
     @Override
     public void onBindViewHolder(FilesViewHolder holder, int position) {
-        holder.name.setText(fileList.get(position));
+        holder.name.setText(fileList.get(position).getName());
+        holder.description.setText(fileList.get(position).getDescription());
     }
 
     @Override

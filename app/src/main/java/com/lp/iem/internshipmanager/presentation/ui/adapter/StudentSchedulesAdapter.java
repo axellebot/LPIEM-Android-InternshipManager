@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.model.Schedule;
 
 import java.util.List;
 
@@ -16,9 +17,9 @@ import java.util.List;
 
 public class StudentSchedulesAdapter extends RecyclerView.Adapter<StudentSchedulesAdapter.ScheduleViewHolder> {
 
-    private List<String> scheduleList;
+    private List<Schedule> scheduleList;
 
-    public StudentSchedulesAdapter(List<String> scheduleList) {
+    public StudentSchedulesAdapter(List<Schedule> scheduleList) {
         this.scheduleList = scheduleList;
     }
 
@@ -30,7 +31,8 @@ public class StudentSchedulesAdapter extends RecyclerView.Adapter<StudentSchedul
 
     @Override
     public void onBindViewHolder(ScheduleViewHolder holder, int position) {
-        holder.date.setText(scheduleList.get(position));
+        holder.date.setText(scheduleList.get(position).getLabel());
+        holder.description.setText(scheduleList.get(position).getDescription());
     }
 
     @Override
