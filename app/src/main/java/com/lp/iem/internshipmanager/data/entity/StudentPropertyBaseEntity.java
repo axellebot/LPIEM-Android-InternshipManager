@@ -16,6 +16,6 @@ public abstract class StudentPropertyBaseEntity extends BaseModel {
     @Column
     public String value;
 
-    @ForeignKey
+    @ForeignKey(stubbedRelationship = true)
     public StudentEntity student;
 }
