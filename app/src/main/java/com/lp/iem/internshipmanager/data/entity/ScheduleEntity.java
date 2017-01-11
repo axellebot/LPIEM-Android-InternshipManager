@@ -23,6 +23,6 @@ public class ScheduleEntity extends BaseModel {
     @Column
     public Date date;
 
-    @ForeignKey
+    @ForeignKey(stubbedRelationship = true)
     public StudentEntity student;
 }

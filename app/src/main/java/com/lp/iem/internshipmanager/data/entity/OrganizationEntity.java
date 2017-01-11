@@ -15,6 +15,6 @@ public class OrganizationEntity extends BaseModel {
     @Column
     public String name;
 
-    @ForeignKey
+    @ForeignKey(stubbedRelationship = true)
     public StudentEntity student;
 }

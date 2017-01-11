@@ -18,6 +18,6 @@ public class FileEntity extends BaseModel {
     @Column
     public String description;
 
-    @ForeignKey
+    @ForeignKey(stubbedRelationship = true)
     public StudentEntity student;
 }
