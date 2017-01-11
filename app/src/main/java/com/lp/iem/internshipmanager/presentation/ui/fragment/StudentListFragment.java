@@ -46,7 +46,7 @@ public class StudentListFragment extends Fragment implements StudentListView {
         ButterKnife.bind(this, view);
         initializeInjection();
 
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Students");
+        setActionBar();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -107,7 +107,14 @@ public class StudentListFragment extends Fragment implements StudentListView {
         displayStudentList(studentList);
     }
 
+    public void setActionBar() {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Students");
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(false);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+    }
+
     private void initializeInjection() {
         presenter = new StudentListPresenter(this, (MainActivity) getActivity());
     }
+
 }

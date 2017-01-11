@@ -6,4 +6,6 @@
     <string name="part_leads">Leads</string>
     <string name="part_schedules">Schedules</string>
     <string name="part_files">Documents</string>
+
+    <string name="student_details_about_title">"À propose de "</string>
 </resources>

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.model.Address;
 import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class StudentAddressAdapter extends RecyclerView.Adapter<StudentAddressAdapter.AddressViewHolder> {
 
-    private List<String> addressList;
+    private List<Address> addressList;
     private ClickCallbackListener clickCallbackListener;
 
-    public StudentAddressAdapter(List<String> addressList, ClickCallbackListener clickCallbackListener) {
+    public StudentAddressAdapter(List<Address> addressList, ClickCallbackListener clickCallbackListener) {
         this.addressList = addressList;
         this.clickCallbackListener = clickCallbackListener;
     }
@@ -38,14 +39,18 @@ public class StudentAddressAdapter extends RecyclerView.Adapter<StudentAddressAd
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickCallbackListener.openMapAtAddress(addressList.get(position));
+                clickCallbackListener.openMapAtAddress(addressList.get(position).getValue());
             }
         });
-        holder.address.setText(addressList.get(position));
+        if(position == 0) {
+            holder.locationIcon.setVisibility(View.VISIBLE);
+        }
+        holder.address.setText(addressList.get(position).getValue());
+        holder.type.setText(addressList.get(position).getLabel());
         holder.routeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickCallbackListener.routeToAddress(addressList.get(position));
+                clickCallbackListener.routeToAddress(addressList.get(position).getValue());
             }
         });
     }
@@ -57,6 +62,7 @@ public class StudentAddressAdapter extends RecyclerView.Adapter<StudentAddressAd
 
     static class AddressViewHolder extends RecyclerView.ViewHolder {
         LinearLayout item;
+        ImageView locationIcon;
         TextView address;
         TextView type;
         ImageView routeButton;
@@ -64,6 +70,7 @@ public class StudentAddressAdapter extends RecyclerView.Adapter<StudentAddressAd
         public AddressViewHolder(View itemView) {
             super(itemView);
             item = (LinearLayout) itemView.findViewById(R.id.item_address_item);
+            locationIcon = (ImageView) itemView.findViewById(R.id.item_address_location_icon);
             address = (TextView) itemView.findViewById(R.id.item_address_address);
             type = (TextView) itemView.findViewById(R.id.item_address_type);
             routeButton = (ImageView) itemView.findViewById(R.id.item_address_route_button);

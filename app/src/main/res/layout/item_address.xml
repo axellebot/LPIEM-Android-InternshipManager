@@ -7,6 +7,15 @@
     android:clickable="true"
     android:background="?attr/selectableItemBackground">
 
+    <ImageView
+        android:id="@+id/item_address_location_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_location_on_black_24px"
+        android:layout_margin="@dimen/default_material_margin_normal"
+        android:tint="@color/colorAccent"
+        android:visibility="invisible"/>
+
     <LinearLayout
         android:layout_width="0dp"
         android:layout_height="wrap_content"

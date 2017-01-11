@@ -84,6 +84,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     titleViewHolder.title.setText(studentViewModel.getFullName());
                     break;
                 case CARD_CONTACT:
+
                     ContactInfosViewHolder contactInfosViewHolder = (ContactInfosViewHolder) holder;
                     // PHONES
                     LinearLayoutManager phonesLayoutManager = new LinearLayoutManager(context) {
@@ -94,15 +95,13 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     };
                     phonesLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                     contactInfosViewHolder.phoneNumberList.setLayoutManager(phonesLayoutManager);
-                    // todo get phones
-                    // MOCK
-                    List<String> phones = new ArrayList<>();
-                    phones.add("0683344358");
-                    phones.add("0647796340");
-                    StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(phones, clickCallbackListener);
+                    StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(student.getNumberList(), clickCallbackListener);
                     contactInfosViewHolder.phoneNumberList.setAdapter(studentPhonesAdapter);
 
                     //EMAILS
+                    if(student.getEmailList().isEmpty()) {
+                        ((ContactInfosViewHolder) holder).emailListDivider.setVisibility(View.GONE);
+                    }
                     LinearLayoutManager emailsLayoutManager = new LinearLayoutManager(context) {
                         @Override
                         public boolean canScrollVertically() {
@@ -111,15 +110,13 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     };
                     emailsLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                     contactInfosViewHolder.emailList.setLayoutManager(emailsLayoutManager);
-                    // todo get emails
-                    // MOCK
-                    List<String> emails = new ArrayList<>();
-                    emails.add("exemple.1@etu.fr");
-                    emails.add("exemple.2@etu.fr");
-                    StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(emails, clickCallbackListener);
+                    StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(student.getEmailList(), clickCallbackListener);
                     contactInfosViewHolder.emailList.setAdapter(studentEmailsAdapter);
 
                     //ADDRESS
+                    if(student.getAddressList().isEmpty()) {
+                        ((ContactInfosViewHolder) holder).addressListDivider.setVisibility(View.GONE);
+                    }
                     LinearLayoutManager addressLayoutManager = new LinearLayoutManager(context) {
                         @Override
                         public boolean canScrollVertically() {
@@ -128,17 +125,13 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     };
                     addressLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                     contactInfosViewHolder.addressList.setLayoutManager(addressLayoutManager);
-                    // todo get addresses
-                    // MOCK
-                    List<String> address = new ArrayList<>();
-                    address.add("71 rue Peter Fink, Bourg-en-Bresse 01000 France");
-                    address.add("16 rue Juliette Récamier, Bourg-en-Bresse 01000 France");
-                    StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(address, clickCallbackListener);
+                    StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(student.getAddressList(), clickCallbackListener);
                     contactInfosViewHolder.addressList.setAdapter(studentAddressAdapter);
                     break;
                 case CARD_ABOUT:
                     final AboutViewHolder aboutViewHolder = (AboutViewHolder) holder;
-                    // PHONES
+                    aboutViewHolder.title.setText(context.getString(R.string.student_details_about_title) + studentViewModel.getFullName());
+
                     LinearLayoutManager websiteLayoutManager = new LinearLayoutManager(context) {
                         @Override
                         public boolean canScrollVertically() {
@@ -147,16 +140,10 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     };
                     websiteLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
                     aboutViewHolder.websiteList.setLayoutManager(websiteLayoutManager);
-                    // todo get websites
-                    // MOCK
-                    List<String> websites = new ArrayList<>();
-                    websites.add("google.com");
-                    websites.add("iut.univ-lyon1.fr");
-                    StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(websites, clickCallbackListener);
+                    StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(student.getWebSites(), clickCallbackListener);
                     aboutViewHolder.websiteList.setAdapter(studentWebsitesAdapter);
 
-                    // todo set note
-                    aboutViewHolder.note.setText("Ceci  est une note \nblablabla");
+                    aboutViewHolder.note.setText(student.getNotes());
                     aboutViewHolder.note.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -192,7 +179,6 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     break;
                 case CARD_SCHEDULES:
                     ScheduleListViewHolder scheduleListViewHolder = (ScheduleListViewHolder) holder;
-                    // PHONES
                     LinearLayoutManager schedulesLayoutManager = new LinearLayoutManager(context) {
                         @Override
                         public boolean canScrollVertically() {
@@ -212,7 +198,6 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
                     break;
                 case CARD_FILES:
                     FileListViewHolder fileListViewHolder = (FileListViewHolder) holder;
-                    // PHONES
                     LinearLayoutManager filesLayoutManager = new LinearLayoutManager(context) {
                         @Override
                         public boolean canScrollVertically() {
@@ -254,13 +239,17 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     static class ContactInfosViewHolder extends RecyclerView.ViewHolder {
         RecyclerView phoneNumberList;
+        View emailListDivider;
         RecyclerView emailList;
+        View addressListDivider;
         RecyclerView addressList;
 
         public ContactInfosViewHolder(View itemView) {
             super(itemView);
             phoneNumberList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_contactinfos_phonenumberlist);
+            emailListDivider = itemView.findViewById(R.id.item_studentdetails_contactinfos_emaillist_divider);
             emailList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_contactinfos_emaillist);
+            addressListDivider = itemView.findViewById(R.id.item_studentdetails_contactinfos_addresslist_divider);
             addressList = (RecyclerView) itemView.findViewById(R.id.item_studentdetails_contactinfos_addresslist);
         }
     }

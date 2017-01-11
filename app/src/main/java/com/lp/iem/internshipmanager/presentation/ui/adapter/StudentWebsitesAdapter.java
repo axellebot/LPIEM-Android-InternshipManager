@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.model.Website;
 import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.List;
@@ -18,10 +19,10 @@ import java.util.List;
 
 public class StudentWebsitesAdapter extends RecyclerView.Adapter<StudentWebsitesAdapter.WebsiteViewHolder> {
 
-    private List<String> websiteList;
+    private List<Website> websiteList;
     private ClickCallbackListener clickCallbackListener;
 
-    public StudentWebsitesAdapter(List<String> websiteList, ClickCallbackListener clickCallbackListener) {
+    public StudentWebsitesAdapter(List<Website> websiteList, ClickCallbackListener clickCallbackListener) {
         this.websiteList = websiteList;
         this.clickCallbackListener = clickCallbackListener;
     }
@@ -37,10 +38,11 @@ public class StudentWebsitesAdapter extends RecyclerView.Adapter<StudentWebsites
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickCallbackListener.openWebsite(websiteList.get(position));
+                clickCallbackListener.openWebsite(websiteList.get(position).getValue());
             }
         });
-        holder.website.setText(websiteList.get(position));
+        holder.website.setText(websiteList.get(position).getValue());
+        holder.type.setText(websiteList.get(position).getLabel());
     }
 
     @Override

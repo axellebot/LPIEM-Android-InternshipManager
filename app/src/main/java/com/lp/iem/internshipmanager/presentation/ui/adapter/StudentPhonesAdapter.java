@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
+import com.lp.iem.internshipmanager.presentation.model.Number;
 import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdapter.PhoneViewHolder> {
 
-    private List<String> phoneList;
+    private List<Number> phoneList;
     private ClickCallbackListener clickCallbackListener;
 
-    public StudentPhonesAdapter(List<String> phoneList, ClickCallbackListener clickCallbackListener) {
+    public StudentPhonesAdapter(List<Number> phoneList, ClickCallbackListener clickCallbackListener) {
         this.phoneList = phoneList;
         this.clickCallbackListener = clickCallbackListener;
     }
@@ -38,14 +39,18 @@ public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdap
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickCallbackListener.callPhoneNumber(phoneList.get(position));
+                clickCallbackListener.callPhoneNumber(phoneList.get(position).getValue());
             }
         });
-        holder.phone.setText(phoneList.get(position));
+        if(position == 0) {
+            holder.callIcon.setVisibility(View.VISIBLE);
+        }
+        holder.phone.setText(phoneList.get(position).getValue());
+        holder.type.setText(phoneList.get(position).getLabel());
         holder.messageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clickCallbackListener.sendMessageToPhoneNumber(phoneList.get(position));
+                clickCallbackListener.sendMessageToPhoneNumber(phoneList.get(position).getValue());
             }
         });
     }
@@ -57,6 +62,7 @@ public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdap
 
     static class PhoneViewHolder extends RecyclerView.ViewHolder {
         LinearLayout item;
+        ImageView callIcon;
         TextView phone;
         TextView type;
         ImageView messageButton;
@@ -64,6 +70,7 @@ public class StudentPhonesAdapter extends RecyclerView.Adapter<StudentPhonesAdap
         public PhoneViewHolder(View itemView) {
             super(itemView);
             item = (LinearLayout) itemView.findViewById(R.id.item_phonenumber_item);
+            callIcon = (ImageView) itemView.findViewById(R.id.item_phonenumber_call_icon);
             phone = (TextView) itemView.findViewById(R.id.item_phonenumber_number);
             type = (TextView) itemView.findViewById(R.id.item_phonenumber_type);
             messageButton = (ImageView) itemView.findViewById(R.id.item_phonenumber_message_button);

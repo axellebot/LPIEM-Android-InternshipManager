@@ -60,9 +60,10 @@ public class MainNavigator implements BaseActivityLifeCycle {
 
     public void onBackPressed(){
         if(currentFragmentId == FRAGMENT_STUDENT_DETAILS) {
-            if(getCurrentFragment() instanceof StudentDetailsFragment && !((StudentDetailsFragment)getCurrentFragment()).isItemIsFocused()) {
+            if(getCurrentFragment() instanceof StudentDetailsFragment && !((StudentDetailsFragment) getCurrentFragment()).isItemIsFocused()) {
                 fragmentManager.popBackStack();
                 currentFragmentId = FRAGMENT_STUDENT_LIST;
+                studentListFragment.setActionBar();
             }
         }
     }
@@ -98,6 +99,7 @@ public class MainNavigator implements BaseActivityLifeCycle {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.main_activity_fragment_container, fragment, fragment.getClass().getName());
         fragmentTransaction.addToBackStack(fragment.getClass().getName());
+        fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.commit();
     }
 }

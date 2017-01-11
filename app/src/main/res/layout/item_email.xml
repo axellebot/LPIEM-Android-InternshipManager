@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:id="@+id/item_email_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:background="?attr/selectableItemBackground">
+
+    <ImageView
+        android:id="@+id/item_email_email_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_email_black_24px"
+        android:layout_margin="@dimen/default_material_margin_normal"
+        android:tint="@color/colorAccent"
+        android:visibility="invisible"/>
 
     <LinearLayout
         android:layout_width="match_parent"

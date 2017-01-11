@@ -44,7 +44,7 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
         ButterKnife.bind(this, view);
         initializeInjection(getArguments().getString(ARG_STUDENT_ID));
 
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Student Details");
+        setActionBar();
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -83,6 +83,12 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
     public void displayDetails(Student student) {
         studentDetailsAdapter = new StudentDetailsAdapter(student, presenter);
         recyclerView.setAdapter(studentDetailsAdapter);
+    }
+
+    public void setActionBar() {
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Student Details");
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     public boolean isItemIsFocused() {

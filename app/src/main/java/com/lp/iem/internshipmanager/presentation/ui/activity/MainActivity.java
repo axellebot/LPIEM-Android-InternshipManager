@@ -3,16 +3,18 @@ package com.lp.iem.internshipmanager.presentation.ui.activity;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.presentation.navigator.MainNavigator;
+import com.lp.iem.internshipmanager.presentation.ui.listener.NavigationListener;
 import com.lp.iem.internshipmanager.presentation.ui.listener.StudentSelectedListener;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import it.sephiroth.android.library.bottomnavigation.BottomNavigation;
 
-public class MainActivity extends AppCompatActivity implements StudentSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationListener, StudentSelectedListener {
 
     private MainNavigator navigator;
 
@@ -58,7 +60,20 @@ public class MainActivity extends AppCompatActivity implements StudentSelectedLi
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
     public void studentSelected(String studentId) {
         navigator.displayStudentDetailsFragment(studentId);
+    }
+
+    @Override
+    public void onStudentDetailsBackPressed() {
+
     }
 }

@@ -67,7 +67,7 @@ public class IMApplication extends Application {
         // add for verbose logging
         // FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
 
-        //testDBFlow();
+        testDBFlow();
     }
 
     private void testDBFlow() {
@@ -76,6 +76,7 @@ public class IMApplication extends Application {
         studentEntity.id = UUID.randomUUID().toString();
         studentEntity.fname = "Marty";
         studentEntity.lname = "MacFly";
+        studentEntity.notes = "Some notes about \nthis student";
 
         //files
         FileEntity fileEntity = new FileEntity();
