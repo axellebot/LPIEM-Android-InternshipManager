@@ -76,12 +76,14 @@ public class IMApplication extends Application {
         studentEntity.id = UUID.randomUUID().toString();
         studentEntity.fname = "Marty";
         studentEntity.lname = "MacFly";
+        studentEntity.notes = "Some notes about \nthis student";
 
         //files
         FileEntity fileEntity = new FileEntity();
         fileEntity.id = UUID.randomUUID().toString();
         fileEntity.filePath = "/sdcard0/test.txt";
         fileEntity.description = "Description";
+        fileEntity.student = studentEntity;
         studentEntity.getFileList().add(fileEntity);
 
         //Address
@@ -89,6 +91,7 @@ public class IMApplication extends Application {
         addressEntity.id = UUID.randomUUID().toString();
         addressEntity.label = "RDV";
         addressEntity.value = "21 rue Peter Fink";
+        addressEntity.student = studentEntity;
         studentEntity.getAddressList().add(addressEntity);
 
         //Email
@@ -96,6 +99,7 @@ public class IMApplication extends Application {
         emailEntity.id = UUID.randomUUID().toString();
         emailEntity.label = "Email";
         emailEntity.value = "example@example.com";
+        emailEntity.student = studentEntity;
         studentEntity.getEmailList().add(emailEntity);
 
         //schedules
@@ -104,6 +108,7 @@ public class IMApplication extends Application {
         scheduleEntity.date = new Date();
         scheduleEntity.label = "Label RDV";
         scheduleEntity.description = "Description RDV";
+        scheduleEntity.student=studentEntity;
         studentEntity.getScheduleList().add(scheduleEntity);
 
         //numbers
@@ -111,12 +116,14 @@ public class IMApplication extends Application {
         numberEntity.id = UUID.randomUUID().toString();
         numberEntity.label = "Numero uno";
         numberEntity.value = "+33 6 05 05 05 05";
+        numberEntity.student=studentEntity;
         studentEntity.getNumberList().add(numberEntity);
 
         //organnization
         OrganizationEntity organizationEntity = new OrganizationEntity();
         organizationEntity.id = UUID.randomUUID().toString();
         organizationEntity.name = "L'entreprise";
+        organizationEntity.student=studentEntity;
         studentEntity.getOrganizationList().add(organizationEntity);
 
         studentEntity.save();
