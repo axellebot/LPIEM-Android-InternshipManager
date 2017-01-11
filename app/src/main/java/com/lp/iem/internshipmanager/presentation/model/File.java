@@ -1,12 +1,13 @@
-package com.lp.iem.internshipmanager.model;
+package com.lp.iem.internshipmanager.presentation.model;
 
 import java.net.URI;
+import java.util.UUID;
 
 
 public class File extends java.io.File {
-
-    private String fileName;
+    private String id;
     private String description;
+    private String studentId;
 
     /**
      *
@@ -34,8 +35,6 @@ public class File extends java.io.File {
      */
     public File(String pathname) {
         super(pathname);
-        String[] listOfValues = pathname.split("/");
-        this.fileName = listOfValues[listOfValues.length - 1];
     }
 
     /**
@@ -44,7 +43,29 @@ public class File extends java.io.File {
      */
     public File(URI uri) {
         super(uri);
-        String[] listOfValues = uri.getPath().split("/");
-        this.fileName = listOfValues[listOfValues.length - 1];
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(String studentId) {
+        this.studentId = studentId;
     }
 }

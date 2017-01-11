@@ -1,6 +1,8 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.neenbedankt.android-apt'
 
+def dbflow_version = "3.1.1"
+
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
@@ -40,4 +42,15 @@ dependencies {
 
     // floating search
     compile 'com.github.arimorty:floatingsearchview:2.0.3'
+
+    //DBFlow
+    apt "com.github.Raizlabs.DBFlow:dbflow-processor:${dbflow_version}"
+    compile "com.github.Raizlabs.DBFlow:dbflow-core:${dbflow_version}"
+    compile "com.github.Raizlabs.DBFlow:dbflow:${dbflow_version}"
+
+    //RX
+    compile 'io.reactivex:rxandroid:1.2.1'
+    // Because RxAndroid releases are few and far between, it is recommended you also
+    // explicitly depend on RxJava's latest version for bug fixes and new features.
+    compile 'io.reactivex:rxjava:1.1.6'
 }
