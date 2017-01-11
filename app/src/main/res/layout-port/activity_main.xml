@@ -21,4 +21,17 @@
         app:bbn_scrollEnabled="false"
         app:layout_behavior="@string/bbn_phone_view_behavior"/>
 
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/main_activity_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_expandDirection="up"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_addButtonColorPressed="@color/colorPrimaryDark"
+        app:layout_anchor="@id/main_activity_fragment_container"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_marginEnd="@dimen/default_material_margin_normal"
+        android:layout_marginBottom="@dimen/default_material_margin_very_huge"/>
+
 </android.support.design.widget.CoordinatorLayout>
