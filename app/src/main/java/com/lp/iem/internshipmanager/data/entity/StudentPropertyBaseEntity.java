@@ -17,5 +17,5 @@ public abstract class StudentPropertyBaseEntity extends BaseModel {
     public String value;
 
     @ForeignKey
-    public String student_id;
+    public StudentEntity student;
 }

@@ -16,5 +16,5 @@ public class OrganizationEntity extends BaseModel {
     public String name;
 
     @ForeignKey
-    public String student_id;
+    public StudentEntity student;
 }

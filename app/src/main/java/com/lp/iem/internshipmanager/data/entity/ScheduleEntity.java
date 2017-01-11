@@ -24,5 +24,5 @@ public class ScheduleEntity extends BaseModel {
     public Date date;
 
     @ForeignKey
-    public String student_id;
+    public StudentEntity student;
 }
