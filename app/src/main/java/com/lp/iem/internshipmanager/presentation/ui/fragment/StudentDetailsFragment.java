@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.presenter.StudentDetailsPresenter;
 import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.adapter.StudentDetailsAdapter;
@@ -23,14 +23,18 @@ import butterknife.ButterKnife;
  */
 
 public class StudentDetailsFragment extends Fragment implements StudentDetailsView {
+    private static final String ARG_STUDENT_ID = "STUDENT_ID";
 
     private StudentDetailsPresenter presenter;
     private StudentDetailsAdapter studentDetailsAdapter;
 
     @BindView(R.id.fragment_studentdetails_recyclerview) RecyclerView recyclerView;
 
-    public static StudentDetailsFragment newInstance() {
+    public static StudentDetailsFragment newInstance(String studentId) {
         StudentDetailsFragment fragment = new StudentDetailsFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_STUDENT_ID, studentId);
+        fragment.setArguments(args);
         return fragment;
     }
 
@@ -38,14 +42,14 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_student_details, container, false);
         ButterKnife.bind(this, view);
-        initializeInjection();
+        initializeInjection(getArguments().getString(ARG_STUDENT_ID));
 
-        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Students");
+        ((MainActivity) getActivity()).getSupportActionBar().setTitle("Student Details");
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        studentDetailsAdapter = new StudentDetailsAdapter(new Contact("Marty", "MacFly"), presenter);
+        studentDetailsAdapter = new StudentDetailsAdapter(new Student(), presenter);
         recyclerView.setAdapter(studentDetailsAdapter);
 
         return view;
@@ -76,7 +80,7 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
     }
 
     @Override
-    public void displayDetails(Contact student) {
+    public void displayDetails(Student student) {
         studentDetailsAdapter = new StudentDetailsAdapter(student, presenter);
         recyclerView.setAdapter(studentDetailsAdapter);
     }
@@ -85,7 +89,7 @@ public class StudentDetailsFragment extends Fragment implements StudentDetailsVi
         return studentDetailsAdapter.isItemIsFocused();
     }
 
-    private void initializeInjection() {
-        presenter = new StudentDetailsPresenter(getActivity(), this, new Contact("Marty", "MacFly"));
+    private void initializeInjection(String studentId) {
+        presenter = new StudentDetailsPresenter(getActivity(), this, studentId);
     }
 }

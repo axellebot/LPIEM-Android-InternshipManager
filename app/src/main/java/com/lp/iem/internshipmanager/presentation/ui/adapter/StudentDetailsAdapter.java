@@ -8,12 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
+import com.lp.iem.internshipmanager.presentation.ui.viewmodel.StudentViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     private static final int CARD_SCHEDULES = 3;
     private static final int CARD_FILES = 4;
 
-    private Contact student;
+    private Student student;
 
     private Context context;
 
@@ -39,7 +39,7 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     private boolean itemIsFocused = false;
 
-    public StudentDetailsAdapter(Contact student, ClickCallbackListener clickCallbackListener) {
+    public StudentDetailsAdapter(Student student, ClickCallbackListener clickCallbackListener) {
         this.student = student;
         this.clickCallbackListener= clickCallbackListener;
     }
@@ -76,158 +76,161 @@ public class StudentDetailsAdapter extends RecyclerView.Adapter<RecyclerView.Vie
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        switch (holder.getItemViewType()) {
-            case CARD_TITLE:
-                TitleViewHolder titleViewHolder = (TitleViewHolder) holder;
-                titleViewHolder.title.setText(student.getName());
-                break;
-            case CARD_CONTACT:
-                ContactInfosViewHolder contactInfosViewHolder = (ContactInfosViewHolder) holder;
-                // PHONES
-                LinearLayoutManager phonesLayoutManager = new LinearLayoutManager(context){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                };
-                phonesLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                contactInfosViewHolder.phoneNumberList.setLayoutManager(phonesLayoutManager);
-                // todo get phones
-                // MOCK
-                List<String> phones = new ArrayList<>();
-                phones.add("0683344358");
-                phones.add("0647796340");
-                StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(phones, clickCallbackListener);
-                contactInfosViewHolder.phoneNumberList.setAdapter(studentPhonesAdapter);
+        if(student != null) {
+            StudentViewModel studentViewModel = new StudentViewModel(student);
+            switch (holder.getItemViewType()) {
+                case CARD_TITLE:
+                    TitleViewHolder titleViewHolder = (TitleViewHolder) holder;
+                    titleViewHolder.title.setText(studentViewModel.getFullName());
+                    break;
+                case CARD_CONTACT:
+                    ContactInfosViewHolder contactInfosViewHolder = (ContactInfosViewHolder) holder;
+                    // PHONES
+                    LinearLayoutManager phonesLayoutManager = new LinearLayoutManager(context) {
+                        @Override
+                        public boolean canScrollVertically() {
+                            return false;
+                        }
+                    };
+                    phonesLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    contactInfosViewHolder.phoneNumberList.setLayoutManager(phonesLayoutManager);
+                    // todo get phones
+                    // MOCK
+                    List<String> phones = new ArrayList<>();
+                    phones.add("0683344358");
+                    phones.add("0647796340");
+                    StudentPhonesAdapter studentPhonesAdapter = new StudentPhonesAdapter(phones, clickCallbackListener);
+                    contactInfosViewHolder.phoneNumberList.setAdapter(studentPhonesAdapter);
 
-                //EMAILS
-                LinearLayoutManager emailsLayoutManager = new LinearLayoutManager(context){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                };
-                emailsLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                contactInfosViewHolder.emailList.setLayoutManager(emailsLayoutManager);
-                // todo get emails
-                // MOCK
-                List<String> emails = new ArrayList<>();
-                emails.add("exemple.1@etu.fr");
-                emails.add("exemple.2@etu.fr");
-                StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(emails, clickCallbackListener);
-                contactInfosViewHolder.emailList.setAdapter(studentEmailsAdapter);
+                    //EMAILS
+                    LinearLayoutManager emailsLayoutManager = new LinearLayoutManager(context) {
+                        @Override
+                        public boolean canScrollVertically() {
+                            return false;
+                        }
+                    };
+                    emailsLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    contactInfosViewHolder.emailList.setLayoutManager(emailsLayoutManager);
+                    // todo get emails
+                    // MOCK
+                    List<String> emails = new ArrayList<>();
+                    emails.add("exemple.1@etu.fr");
+                    emails.add("exemple.2@etu.fr");
+                    StudentEmailsAdapter studentEmailsAdapter = new StudentEmailsAdapter(emails, clickCallbackListener);
+                    contactInfosViewHolder.emailList.setAdapter(studentEmailsAdapter);
 
-                //ADDRESS
-                LinearLayoutManager addressLayoutManager = new LinearLayoutManager(context){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                };
-                addressLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                contactInfosViewHolder.addressList.setLayoutManager(addressLayoutManager);
-                // todo get addresses
-                // MOCK
-                List<String> address = new ArrayList<>();
-                address.add("71 rue Peter Fink, Bourg-en-Bresse 01000 France");
-                address.add("16 rue Juliette Récamier, Bourg-en-Bresse 01000 France");
-                StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(address, clickCallbackListener);
-                contactInfosViewHolder.addressList.setAdapter(studentAddressAdapter);
-                break;
-            case CARD_ABOUT:
-                final AboutViewHolder aboutViewHolder = (AboutViewHolder) holder;
-                // PHONES
-                LinearLayoutManager websiteLayoutManager = new LinearLayoutManager(context){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                };
-                websiteLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-                aboutViewHolder.websiteList.setLayoutManager(websiteLayoutManager);
-                // todo get websites
-                // MOCK
-                List<String> websites = new ArrayList<>();
-                websites.add("google.com");
-                websites.add("iut.univ-lyon1.fr");
-                StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(websites, clickCallbackListener);
-                aboutViewHolder.websiteList.setAdapter(studentWebsitesAdapter);
+                    //ADDRESS
+                    LinearLayoutManager addressLayoutManager = new LinearLayoutManager(context) {
+                        @Override
+                        public boolean canScrollVertically() {
+                            return false;
+                        }
+                    };
+                    addressLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    contactInfosViewHolder.addressList.setLayoutManager(addressLayoutManager);
+                    // todo get addresses
+                    // MOCK
+                    List<String> address = new ArrayList<>();
+                    address.add("71 rue Peter Fink, Bourg-en-Bresse 01000 France");
+                    address.add("16 rue Juliette Récamier, Bourg-en-Bresse 01000 France");
+                    StudentAddressAdapter studentAddressAdapter = new StudentAddressAdapter(address, clickCallbackListener);
+                    contactInfosViewHolder.addressList.setAdapter(studentAddressAdapter);
+                    break;
+                case CARD_ABOUT:
+                    final AboutViewHolder aboutViewHolder = (AboutViewHolder) holder;
+                    // PHONES
+                    LinearLayoutManager websiteLayoutManager = new LinearLayoutManager(context) {
+                        @Override
+                        public boolean canScrollVertically() {
+                            return false;
+                        }
+                    };
+                    websiteLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                    aboutViewHolder.websiteList.setLayoutManager(websiteLayoutManager);
+                    // todo get websites
+                    // MOCK
+                    List<String> websites = new ArrayList<>();
+                    websites.add("google.com");
+                    websites.add("iut.univ-lyon1.fr");
+                    StudentWebsitesAdapter studentWebsitesAdapter = new StudentWebsitesAdapter(websites, clickCallbackListener);
+                    aboutViewHolder.websiteList.setAdapter(studentWebsitesAdapter);
 
-                // todo set note
-                aboutViewHolder.note.setText("Ceci  est une note \nblablabla");
-                aboutViewHolder.note.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        aboutViewHolder.note.setVisibility(View.GONE);
-                        aboutViewHolder.noteEdit.setVisibility(View.VISIBLE);
-                        aboutViewHolder.noteEdit.setText(aboutViewHolder.note.getText());
-                        aboutViewHolder.applyButton.setVisibility(View.VISIBLE);
-                        aboutViewHolder.closeButton.setVisibility(View.VISIBLE);
-                        itemIsFocused = true;
-                    }
-                });
-                aboutViewHolder.applyButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        aboutViewHolder.noteEdit.setVisibility(View.GONE);
-                        aboutViewHolder.note.setText(aboutViewHolder.noteEdit.getText());
-                        aboutViewHolder.note.setVisibility(View.VISIBLE);
-                        aboutViewHolder.applyButton.setVisibility(View.GONE);
-                        aboutViewHolder.closeButton.setVisibility(View.GONE);
-                        itemIsFocused = false;
-                    }
-                });
-                aboutViewHolder.closeButton.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        aboutViewHolder.noteEdit.setVisibility(View.GONE);
-                        aboutViewHolder.note.setVisibility(View.VISIBLE);
-                        aboutViewHolder.applyButton.setVisibility(View.GONE);
-                        aboutViewHolder.closeButton.setVisibility(View.GONE);
-                        itemIsFocused = false;
-                    }
-                });
-                break;
-            case CARD_SCHEDULES:
-                ScheduleListViewHolder scheduleListViewHolder = (ScheduleListViewHolder) holder;
-                // PHONES
-                LinearLayoutManager schedulesLayoutManager = new LinearLayoutManager(context){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                };
-                schedulesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                scheduleListViewHolder.scheduleList.setLayoutManager(schedulesLayoutManager);
-                // todo get schedules
-                // MOCK
-                List<String> schedules = new ArrayList<>();
-                schedules.add("21 oct. 2016");
-                schedules.add("29 nov. 2016");
-                schedules.add("11 dec. 2016");
-                StudentSchedulesAdapter studentSchedulesAdapter = new StudentSchedulesAdapter(schedules);
-                scheduleListViewHolder.scheduleList.setAdapter(studentSchedulesAdapter);
-                break;
-            case CARD_FILES:
-                FileListViewHolder fileListViewHolder = (FileListViewHolder) holder;
-                // PHONES
-                LinearLayoutManager filesLayoutManager = new LinearLayoutManager(context){
-                    @Override
-                    public boolean canScrollVertically() {
-                        return false;
-                    }
-                };
-                filesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-                fileListViewHolder.fileList.setLayoutManager(filesLayoutManager);
-                // todo get schedules
-                // MOCK
-                List<String> files = new ArrayList<>();
-                files.add("file_1.txt");
-                files.add("file2.pdf");
-                files.add("file-3.docx");
-                StudentFilesAdapter studentFilesAdapter = new StudentFilesAdapter(files);
-                fileListViewHolder.fileList.setAdapter(studentFilesAdapter);
-                break;
+                    // todo set note
+                    aboutViewHolder.note.setText("Ceci  est une note \nblablabla");
+                    aboutViewHolder.note.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            aboutViewHolder.note.setVisibility(View.GONE);
+                            aboutViewHolder.noteEdit.setVisibility(View.VISIBLE);
+                            aboutViewHolder.noteEdit.setText(aboutViewHolder.note.getText());
+                            aboutViewHolder.applyButton.setVisibility(View.VISIBLE);
+                            aboutViewHolder.closeButton.setVisibility(View.VISIBLE);
+                            itemIsFocused = true;
+                        }
+                    });
+                    aboutViewHolder.applyButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            aboutViewHolder.noteEdit.setVisibility(View.GONE);
+                            aboutViewHolder.note.setText(aboutViewHolder.noteEdit.getText());
+                            aboutViewHolder.note.setVisibility(View.VISIBLE);
+                            aboutViewHolder.applyButton.setVisibility(View.GONE);
+                            aboutViewHolder.closeButton.setVisibility(View.GONE);
+                            itemIsFocused = false;
+                        }
+                    });
+                    aboutViewHolder.closeButton.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            aboutViewHolder.noteEdit.setVisibility(View.GONE);
+                            aboutViewHolder.note.setVisibility(View.VISIBLE);
+                            aboutViewHolder.applyButton.setVisibility(View.GONE);
+                            aboutViewHolder.closeButton.setVisibility(View.GONE);
+                            itemIsFocused = false;
+                        }
+                    });
+                    break;
+                case CARD_SCHEDULES:
+                    ScheduleListViewHolder scheduleListViewHolder = (ScheduleListViewHolder) holder;
+                    // PHONES
+                    LinearLayoutManager schedulesLayoutManager = new LinearLayoutManager(context) {
+                        @Override
+                        public boolean canScrollVertically() {
+                            return false;
+                        }
+                    };
+                    schedulesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    scheduleListViewHolder.scheduleList.setLayoutManager(schedulesLayoutManager);
+                    // todo get schedules
+                    // MOCK
+                    List<String> schedules = new ArrayList<>();
+                    schedules.add("21 oct. 2016");
+                    schedules.add("29 nov. 2016");
+                    schedules.add("11 dec. 2016");
+                    StudentSchedulesAdapter studentSchedulesAdapter = new StudentSchedulesAdapter(schedules);
+                    scheduleListViewHolder.scheduleList.setAdapter(studentSchedulesAdapter);
+                    break;
+                case CARD_FILES:
+                    FileListViewHolder fileListViewHolder = (FileListViewHolder) holder;
+                    // PHONES
+                    LinearLayoutManager filesLayoutManager = new LinearLayoutManager(context) {
+                        @Override
+                        public boolean canScrollVertically() {
+                            return false;
+                        }
+                    };
+                    filesLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+                    fileListViewHolder.fileList.setLayoutManager(filesLayoutManager);
+                    // todo get schedules
+                    // MOCK
+                    List<String> files = new ArrayList<>();
+                    files.add("file_1.txt");
+                    files.add("file2.pdf");
+                    files.add("file-3.docx");
+                    StudentFilesAdapter studentFilesAdapter = new StudentFilesAdapter(files);
+                    fileListViewHolder.fileList.setAdapter(studentFilesAdapter);
+                    break;
+            }
         }
     }
 

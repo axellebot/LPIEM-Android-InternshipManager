@@ -1,11 +1,10 @@
 package com.lp.iem.internshipmanager.presentation.ui.activity;
 
+import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.model.Contact;
 import com.lp.iem.internshipmanager.presentation.navigator.MainNavigator;
 import com.lp.iem.internshipmanager.presentation.ui.listener.StudentSelectedListener;
 
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements StudentSelectedLi
     }
 
     @Override
-    public void studentSelected(Contact student) {
-        navigator.displayStudentDetailsFragment(student);
+    public void studentSelected(String studentId) {
+        navigator.displayStudentDetailsFragment(studentId);
     }
 }

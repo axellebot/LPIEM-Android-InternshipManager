@@ -1,14 +1,21 @@
 package com.lp.iem.internshipmanager.presentation.presenter;
 
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.data.repository.DataRepository;
+import com.lp.iem.internshipmanager.presentation.IMApplication;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
 import com.lp.iem.internshipmanager.presentation.ui.listener.StudentSelectedListener;
 import com.lp.iem.internshipmanager.presentation.ui.view.StudentListView;
+import com.lp.iem.internshipmanager.presentation.ui.viewmodel.StudentViewModel;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by romai on 09/01/2017.
@@ -17,18 +24,21 @@ import java.util.List;
 public class StudentListPresenter implements BaseActivityLifeCycle {
 
     private StudentListView studentListView;
-    private List<Contact> studentList;
-
     private StudentSelectedListener studentSelectedListener;
+
+    private List<Student> studentList;
+
+    private DataRepository dataRepository;
 
     public StudentListPresenter(StudentListView studentListView, StudentSelectedListener studentSelectedListener) {
         this.studentListView = studentListView;
         this.studentSelectedListener = studentSelectedListener;
+        dataRepository = IMApplication.app().getDataRepository();
     }
 
     @Override
     public void start() {
-        getStudentListMock();
+        getStudentList();
     }
 
     @Override
@@ -53,12 +63,30 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
 
     public void getStudentList() {
         //todo get student list
-        /*List<Contact> studentList = dataRepository.getStudentList();
-        studentListView.displayStudentList(studentList);*/
+        dataRepository.getStudents()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<List<Student>>() {
+                               @Override
+                               public void onCompleted() {
+
+                               }
+
+                               @Override
+                               public void onError(Throwable e) {
+                                    e.printStackTrace();
+                               }
+
+                               @Override
+                               public void onNext(List<Student> students) {
+                                   studentList = students;
+                                   studentListView.displayStudentList(studentList);
+                               }
+                           });
     }
 
     public void itemClicked(int position) {
-        studentSelectedListener.studentSelected(studentList.get(position));
+        studentSelectedListener.studentSelected(studentList.get(position).getId());
     }
 
     public void filterList(String query) {
@@ -67,27 +95,27 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
 
     private void getStudentListMock() {
         studentList = new ArrayList<>();
-        studentList.add(new Contact("Marty", "MacFly"));
-        studentList.add(new Contact("Alexandre", "Astier"));
-        studentList.add(new Contact("Rick", "Sanchez"));
         studentListView.displayStudentList(sortList(studentList));
     }
 
-    private List<Contact> sortList(List<Contact> list) {
-        Collections.sort(list, new Comparator<Contact>() {
+    private List<Student> sortList(List<Student> list) {
+        Collections.sort(list, new Comparator<Student>() {
             @Override
-            public int compare(Contact contact1, Contact contact2) {
-                return contact1.getName().compareTo(contact2.getName());
+            public int compare(Student contact1, Student contact2) {
+                StudentViewModel studentViewModel1 = new StudentViewModel(contact1);
+                StudentViewModel studentViewModel2 = new StudentViewModel(contact2);
+                return studentViewModel1.getFullName().compareTo(studentViewModel2.getFullName());
             }
         });
         return list;
     }
 
-    private List<Contact> filter(List<Contact> contacts, String query) {
+    private List<Student> filter(List<Student> contacts, String query) {
         query = query.toLowerCase();
-        final List<Contact> filteredModelList = new ArrayList<>();
-        for (Contact contact : contacts) {
-            final String text = contact.getName().toLowerCase();
+        final List<Student> filteredModelList = new ArrayList<>();
+        for (Student contact : contacts) {
+            StudentViewModel studentViewModel1 = new StudentViewModel(contact);
+            final String text = studentViewModel1.getFullName().toLowerCase();
             if (text.contains(query)) {
                 filteredModelList.add(contact);
             }

@@ -8,16 +8,16 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.data.repository.DataRepository;
+import com.lp.iem.internshipmanager.presentation.IMApplication;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
 import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
 import com.lp.iem.internshipmanager.presentation.ui.view.StudentDetailsView;
-import com.lp.iem.internshipmanager.presentation.ui.view.StudentListView;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import rx.Observer;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by romai on 09/01/2017.
@@ -27,17 +27,22 @@ public class StudentDetailsPresenter implements BaseActivityLifeCycle, ClickCall
 
     private Context context;
     private StudentDetailsView studentDetailsView;
-    private Contact student;
 
-    public StudentDetailsPresenter(Context context, StudentDetailsView studentDetailsView, Contact student) {
+    private String studentId;
+    private Student student;
+
+    private DataRepository dataRepository;
+
+    public StudentDetailsPresenter(Context context, StudentDetailsView studentDetailsView, String studentId) {
         this.context = context;
         this.studentDetailsView = studentDetailsView;
-        this.student = student;
+        dataRepository = IMApplication.app().getDataRepository();
+        this.studentId = studentId;
     }
 
     @Override
     public void start() {
-        studentDetailsView.displayDetails(student);
+        getStudentById(studentId);
     }
 
     @Override
@@ -122,5 +127,25 @@ public class StudentDetailsPresenter implements BaseActivityLifeCycle, ClickCall
     @Override
     public void openFileDetails() {
 
+    }
+
+    private void getStudentById(final String studentId) {
+        dataRepository.getStudent(studentId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Student>() {
+                    @Override
+                    public void onCompleted() {
+                        studentDetailsView.displayDetails(student);
+                    }
+                    @Override
+                    public void onError(Throwable e) {
+                        e.printStackTrace();
+                    }
+                    @Override
+                    public void onNext(Student s) {
+                        student = s;
+                    }
+                });
     }
 }

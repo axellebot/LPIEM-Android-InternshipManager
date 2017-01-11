@@ -1,6 +1,6 @@
 package com.lp.iem.internshipmanager.presentation.ui.view;
 
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 
 import java.util.List;
 
@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public interface StudentListView {
-    void displayStudentList(List<Contact> studentList);
-    void displayFilteredStudentList(List<Contact> studentList);
+    void displayStudentList(List<Student> studentList);
+    void displayFilteredStudentList(List<Student> studentList);
 }

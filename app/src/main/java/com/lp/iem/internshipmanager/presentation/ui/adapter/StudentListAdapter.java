@@ -8,7 +8,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.model.Student;
+import com.lp.iem.internshipmanager.presentation.ui.viewmodel.StudentViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,10 +20,10 @@ import java.util.List;
 
 public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.StudentViewHolder> {
 
-    private List<Contact> studentList;
+    private List<Student> studentList;
     private ClickListener clickListener;;
 
-    public StudentListAdapter(List<Contact> studentList) {
+    public StudentListAdapter(List<Student> studentList) {
         this.studentList = studentList;
     }
 
@@ -36,7 +37,8 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
 
     @Override
     public void onBindViewHolder(final StudentViewHolder holder, final int position) {
-        holder.studentName.setText(studentList.get(position).getName());
+        StudentViewModel studentViewModel = new StudentViewModel(studentList.get(position));
+        holder.studentName.setText(studentViewModel.getFullName());
         holder.item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,11 +54,11 @@ public class StudentListAdapter extends RecyclerView.Adapter<StudentListAdapter.
         return studentList.size();
     }
 
-    public List<Contact> getStudentList() {
+    public List<Student> getStudentList() {
         return studentList;
     }
 
-    public void setFilteredList(List<Contact> countryModels) {
+    public void setFilteredList(List<Student> countryModels) {
         studentList = new ArrayList<>();
         studentList.addAll(countryModels);
         notifyDataSetChanged();

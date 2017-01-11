@@ -6,13 +6,12 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
 import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentDetailsFragment;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentListFragment;
 
-import java.util.List;
 
 /**
  * Created by romai on 09/01/2017.
@@ -79,8 +78,8 @@ public class MainNavigator implements BaseActivityLifeCycle {
         currentFragmentId = FRAGMENT_STUDENT_LIST;
     }
 
-    public void displayStudentDetailsFragment(Contact student) {
-        StudentDetailsFragment studentDetailsFragment = StudentDetailsFragment.newInstance();
+    public void displayStudentDetailsFragment(String studentId) {
+        StudentDetailsFragment studentDetailsFragment = StudentDetailsFragment.newInstance(studentId);
         fragmentTransactionAdd(studentDetailsFragment);
         currentFragmentId = FRAGMENT_STUDENT_DETAILS;
     }

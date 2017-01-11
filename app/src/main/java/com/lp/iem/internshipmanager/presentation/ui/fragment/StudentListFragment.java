@@ -11,7 +11,7 @@ import android.view.ViewGroup;
 
 import com.arlib.floatingsearchview.FloatingSearchView;
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.model.Contact;
+import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.presenter.StudentListPresenter;
 import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.adapter.StudentListAdapter;
@@ -51,7 +51,7 @@ public class StudentListFragment extends Fragment implements StudentListView {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(layoutManager);
-        studentListAdapter = new StudentListAdapter(new ArrayList<Contact>());
+        studentListAdapter = new StudentListAdapter(new ArrayList<Student>());
         recyclerView.setAdapter(studentListAdapter);
         DividerItemDecoration dividerItemDecoration = new DividerItemDecoration(recyclerView.getContext(), layoutManager.getOrientation());
         recyclerView.addItemDecoration(dividerItemDecoration);
@@ -91,7 +91,7 @@ public class StudentListFragment extends Fragment implements StudentListView {
     }
 
     @Override
-    public void displayStudentList(List<Contact> studentList) {
+    public void displayStudentList(List<Student> studentList) {
         studentListAdapter = new StudentListAdapter(studentList);
         studentListAdapter.setClickListener(new StudentListAdapter.ClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class StudentListFragment extends Fragment implements StudentListView {
     }
 
     @Override
-    public void displayFilteredStudentList(List<Contact> studentList) {
+    public void displayFilteredStudentList(List<Student> studentList) {
         displayStudentList(studentList);
     }
 
