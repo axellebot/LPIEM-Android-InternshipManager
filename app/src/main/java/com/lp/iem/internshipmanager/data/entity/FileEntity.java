@@ -19,5 +19,5 @@ public class FileEntity extends BaseModel {
     public String description;
 
     @ForeignKey
-    public StudentEntity student;
+    public String student_id;
 }
