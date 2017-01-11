@@ -19,9 +19,8 @@
                 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/item_studentdetails_contactinfos_phonenumberlist"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 tools:listitem="@layout/item_phonenumber"/>
 
             <View
@@ -33,9 +32,8 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/item_studentdetails_contactinfos_emaillist"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 tools:listitem="@layout/item_email"/>
 
             <View
@@ -47,9 +45,8 @@
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/item_studentdetails_contactinfos_addresslist"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 tools:listitem="@layout/item_address"/>
 
 
