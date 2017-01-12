@@ -10,7 +10,7 @@ import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCyc
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentListFragment;
 
 
-public class AddNavigator implements BaseActivityLifeCycle {
+public class CreateNavigator implements BaseActivityLifeCycle {
 
     private int currentFragmentId;
 
@@ -19,7 +19,7 @@ public class AddNavigator implements BaseActivityLifeCycle {
 
     private StudentListFragment studentListFragment;
 
-    public AddNavigator(Activity activity) {
+    public CreateNavigator(Activity activity) {
         this.activity = activity;
         this.fragmentManager = this.activity.getFragmentManager();
     }

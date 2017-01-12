@@ -4,13 +4,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.presentation.navigator.AddNavigator;
+import com.lp.iem.internshipmanager.presentation.navigator.EditNavigator;
 
 import butterknife.ButterKnife;
 
 public class EditActivity extends AppCompatActivity {
 
-    private AddNavigator navigator;
+    private EditNavigator navigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,7 +18,7 @@ public class EditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit);
         ButterKnife.bind(this);
 
-        navigator = new AddNavigator(this);
+        navigator = new EditNavigator(this);
     }
 
 }

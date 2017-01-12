@@ -4,22 +4,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.lp.iem.internshipmanager.R;
-import com.lp.iem.internshipmanager.presentation.navigator.AddNavigator;
-import com.lp.iem.internshipmanager.presentation.navigator.MainNavigator;
+import com.lp.iem.internshipmanager.presentation.navigator.CreateNavigator;
 
 import butterknife.ButterKnife;
 
-public class AddActivity extends AppCompatActivity {
+public class CreateActivity extends AppCompatActivity {
 
-    private AddNavigator navigator;
+    private CreateNavigator navigator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add);
+        setContentView(R.layout.activity_create);
         ButterKnife.bind(this);
 
-        navigator = new AddNavigator(this);
+        navigator = new CreateNavigator(this);
     }
 
 }
