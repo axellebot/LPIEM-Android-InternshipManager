@@ -1,6 +1,5 @@
 package com.lp.iem.internshipmanager.presentation.model;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.UUID;
 
@@ -10,6 +9,10 @@ public class Schedule {
     private String description;
     private Date date;
     private String studentId;
+
+    public Schedule() {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public String getId() {
         return id;

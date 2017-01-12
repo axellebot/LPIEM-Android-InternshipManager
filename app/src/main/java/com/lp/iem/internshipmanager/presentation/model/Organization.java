@@ -11,6 +11,10 @@ public class Organization {
     private String name;
     private String studentId;
 
+    public Organization() {
+        this.id = UUID.randomUUID().toString();
+    }
+
     public String getId() {
         return id;
     }

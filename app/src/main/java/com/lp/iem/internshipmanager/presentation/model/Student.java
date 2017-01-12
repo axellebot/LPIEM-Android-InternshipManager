@@ -2,6 +2,7 @@ package com.lp.iem.internshipmanager.presentation.model;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 public class Student {
     private String id;
@@ -17,13 +18,14 @@ public class Student {
     private List<Schedule> scheduleList;
 
     public Student() {
-        this.emailList= new ArrayList<>();
-        this.numberList= new ArrayList<>();
-        this.addressList= new ArrayList<>();
-        this.organizationList= new ArrayList<>();
-        this.webSites= new ArrayList<>();
-        this.fileList= new ArrayList<>();
-        this.scheduleList= new ArrayList<>();
+        this.id = UUID.randomUUID().toString();
+        this.emailList = new ArrayList<>();
+        this.numberList = new ArrayList<>();
+        this.addressList = new ArrayList<>();
+        this.organizationList = new ArrayList<>();
+        this.webSites = new ArrayList<>();
+        this.fileList = new ArrayList<>();
+        this.scheduleList = new ArrayList<>();
     }
 
     public String getId() {

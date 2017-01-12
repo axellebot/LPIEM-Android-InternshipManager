@@ -1,10 +1,16 @@
 package com.lp.iem.internshipmanager.presentation.model;
 
+import java.util.UUID;
+
 public abstract class StudentPropertyBase {
     private String id;
     private String label;
     private String value;
     private String studentId;
+
+    public StudentPropertyBase() {
+        this.id = UUID.randomUUID().toString();
+    }
 
     public String getId() {
         return id;

@@ -10,7 +10,22 @@ public class File extends java.io.File {
     private String studentId;
 
     /**
-     *
+     * @param pathname
+     */
+    public File(String pathname) {
+        super(pathname);
+        this.id = UUID.randomUUID().toString();
+    }
+
+    /**
+     * @param uri
+     */
+    public File(URI uri) {
+        super(uri);
+        this.id = UUID.randomUUID().toString();
+    }
+
+    /**
      * @param pathname
      * @param description
      */
@@ -20,29 +35,12 @@ public class File extends java.io.File {
     }
 
     /**
-     *
      * @param uri
      * @param description
      */
     public File(URI uri, String description) {
         this(uri);
         this.description = description;
-    }
-
-    /**
-     *
-     * @param pathname
-     */
-    public File(String pathname) {
-        super(pathname);
-    }
-
-    /**
-     *
-     * @param uri
-     */
-    public File(URI uri) {
-        super(uri);
     }
 
     public String getId() {
