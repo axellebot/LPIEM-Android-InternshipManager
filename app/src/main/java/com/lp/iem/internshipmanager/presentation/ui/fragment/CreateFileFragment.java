@@ -2,9 +2,15 @@ package com.lp.iem.internshipmanager.presentation.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
+import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.presentation.presenter.CreateFilePresenter;
 import com.lp.iem.internshipmanager.presentation.ui.view.CreateFileView;
+
+import butterknife.ButterKnife;
 
 public class CreateFileFragment extends Fragment implements CreateFileView {
     private static final String ARG_STUDENT_ID = "STUDENT_ID";
@@ -17,5 +23,13 @@ public class CreateFileFragment extends Fragment implements CreateFileView {
         args.putString(ARG_STUDENT_ID, studentId);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_create_file, container, false);
+        ButterKnife.bind(this, view);
+
+        return view;
     }
 }
