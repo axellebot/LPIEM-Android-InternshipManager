@@ -64,6 +64,7 @@ public class MainNavigator implements BaseActivityLifeCycle {
                 fragmentManager.popBackStack();
                 currentFragmentId = FRAGMENT_STUDENT_LIST;
                 studentListFragment.setActionBar();
+                ((MainActivity) activity).onStudentDetailsBackPressed();
             }
         }
     }

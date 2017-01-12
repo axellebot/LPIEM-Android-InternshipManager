@@ -32,6 +32,7 @@
         app:layout_anchor="@id/main_activity_fragment_container"
         app:layout_anchorGravity="bottom|right|end"
         android:layout_marginEnd="@dimen/default_material_margin_normal"
-        android:layout_marginBottom="@dimen/default_material_margin_very_huge"/>
+        android:layout_marginBottom="@dimen/default_material_margin_very_huge"
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>

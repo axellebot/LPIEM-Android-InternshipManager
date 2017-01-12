@@ -62,7 +62,6 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
     }
 
     public void getStudentList() {
-        //todo get student list
         dataRepository.getStudents()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -80,7 +79,7 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
                                @Override
                                public void onNext(List<Student> students) {
                                    studentList = students;
-                                   studentListView.displayStudentList(studentList);
+                                   studentListView.displayStudentList(sortList(studentList));
                                }
                            });
     }
@@ -91,11 +90,6 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
 
     public void filterList(String query) {
         studentListView.displayFilteredStudentList(filter(studentList, query));
-    }
-
-    private void getStudentListMock() {
-        studentList = new ArrayList<>();
-        studentListView.displayStudentList(sortList(studentList));
     }
 
     private List<Student> sortList(List<Student> list) {

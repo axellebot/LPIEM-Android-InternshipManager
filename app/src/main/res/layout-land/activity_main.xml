@@ -51,6 +51,7 @@
         app:fab_addButtonColorPressed="@color/colorPrimaryDark"
         app:layout_anchor="@id/main_activity_fragment_container2"
         app:layout_anchorGravity="bottom|right|end"
-        android:layout_margin="@dimen/default_material_margin_normal"/>
+        android:layout_margin="@dimen/default_material_margin_normal"
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>
