@@ -5,12 +5,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true">
-
-    <FrameLayout
-        android:id="@+id/main_activity_fragment_container"
+    
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="@dimen/bbn_bottom_navigation_width"/>
+        android:layout_marginLeft="@dimen/bbn_bottom_navigation_width"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <FrameLayout
+            android:id="@+id/main_activity_fragment_container"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@android:color/black"/>
+
+        <FrameLayout
+            android:id="@+id/main_activity_fragment_container2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"/>
+
+    </LinearLayout>
 
     <it.sephiroth.android.library.bottomnavigation.BottomNavigation
         android:id="@+id/main_activity_bottom_navbar"
@@ -20,5 +40,18 @@
         app:bbn_entries="@menu/bottombar_menu"
         app:bbn_scrollEnabled="false"
         app:layout_behavior="@string/bbn_tablet_view_behavior" />
+
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
+        android:id="@+id/main_activity_fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:fab_expandDirection="up"
+        app:fab_addButtonColorNormal="@color/colorAccent"
+        app:fab_addButtonPlusIconColor="@color/white"
+        app:fab_addButtonColorPressed="@color/colorPrimaryDark"
+        app:layout_anchor="@id/main_activity_fragment_container2"
+        app:layout_anchorGravity="bottom|right|end"
+        android:layout_margin="@dimen/default_material_margin_normal"
+        android:visibility="gone"/>
 
 </android.support.design.widget.CoordinatorLayout>
