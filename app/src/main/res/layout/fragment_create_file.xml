@@ -7,11 +7,16 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="@dimen/default_material_margin_normal">
+        android:layout_height="match_parent">
 
-        <include layout="@layout/form_file"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/default_material_padding_normal">
 
+            <include layout="@layout/form_file" />
+        </LinearLayout>
     </ScrollView>
 
     <android.support.design.widget.FloatingActionButton
