@@ -1,14 +1,15 @@
 package com.lp.iem.internshipmanager.presentation.navigator;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.widget.FrameLayout;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
+import com.lp.iem.internshipmanager.presentation.ui.activity.CreateActivity;
 import com.lp.iem.internshipmanager.presentation.ui.activity.MainActivity;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentDetailsFragment;
 import com.lp.iem.internshipmanager.presentation.ui.fragment.StudentListFragment;
@@ -28,8 +29,6 @@ public class MainNavigator implements BaseActivityLifeCycle {
     private Activity activity;
 
     private StudentListFragment studentListFragment;
-
-    private String currentStudentId = null;
 
     public MainNavigator(Activity activity) {
         this.activity = activity;
@@ -62,20 +61,18 @@ public class MainNavigator implements BaseActivityLifeCycle {
     }
 
     public void onBackPressed() {
-        if(currentFragmentId == FRAGMENT_STUDENT_DETAILS) {
+        if (currentFragmentId == FRAGMENT_STUDENT_DETAILS) {
             fragmentManager.popBackStack();
             studentListFragment.setActionBar();
-            currentStudentId = null;
             ((MainActivity) activity).onStudentDetailsBackPressed();
             currentFragmentId = FRAGMENT_STUDENT_LIST;
         }
     }
 
     public void displayStudentListFragment() {
-        if(studentListFragment == null) {
+        if (studentListFragment == null) {
             studentListFragment = StudentListFragment.newInstance();
-        }
-        else {
+        } else {
             fragmentManager.popBackStack();
         }
         fragmentTransactionReplace(studentListFragment);
@@ -83,9 +80,8 @@ public class MainNavigator implements BaseActivityLifeCycle {
     }
 
     public void displayStudentDetailsFragment(String studentId) {
-        this.currentStudentId = studentId;
         StudentDetailsFragment studentDetailsFragment = StudentDetailsFragment.newInstance(studentId);
-        if(currentFragmentId != FRAGMENT_STUDENT_DETAILS) {
+        if (currentFragmentId != FRAGMENT_STUDENT_DETAILS) {
             if (isLandscape()) {
                 fragmentTransactionAddOnSecond(studentDetailsFragment);
             } else {
@@ -99,23 +95,26 @@ public class MainNavigator implements BaseActivityLifeCycle {
         currentFragmentId = FRAGMENT_STUDENT_DETAILS;
     }
 
-    public void displayAddActivity() {
-        // todo run add add activity with add schedule/file fragment
+    public void displayCreateActivity(int fragmentType, String studentId) {
+        Intent intent = new Intent(activity, CreateActivity.class);
+        intent.putExtra(CreateActivity.FRAGMENT_TYPE_KEY, fragmentType);
+        intent.putExtra(CreateActivity.STUDENT_ID_KEY, studentId);
+        activity.startActivity(intent);
     }
 
     private Fragment getCurrentFragment() {
-        return fragmentManager.findFragmentById(R.id.main_activity_fragment_container);
+        return fragmentManager.findFragmentById(R.id.activity_main_fragment_container_one);
     }
 
     private void fragmentTransactionReplace(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_activity_fragment_container, fragment, fragment.getClass().getName());
+        fragmentTransaction.replace(R.id.activity_main_fragment_container_one, fragment, fragment.getClass().getName());
         fragmentTransaction.commit();
     }
 
     private void fragmentTransactionAdd(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_activity_fragment_container, fragment, fragment.getClass().getName());
+        fragmentTransaction.add(R.id.activity_main_fragment_container_one, fragment, fragment.getClass().getName());
         fragmentTransaction.addToBackStack(fragment.getClass().getName());
         fragmentTransaction.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
         fragmentTransaction.commit();
@@ -123,13 +122,13 @@ public class MainNavigator implements BaseActivityLifeCycle {
 
     private void fragmentTransactionReplaceOnSecond(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.main_activity_fragment_container2, fragment, fragment.getClass().getName());
+        fragmentTransaction.replace(R.id.activity_main_fragment_container_two, fragment, fragment.getClass().getName());
         fragmentTransaction.commit();
     }
 
     private void fragmentTransactionAddOnSecond(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.main_activity_fragment_container2, fragment, fragment.getClass().getName());
+        fragmentTransaction.add(R.id.activity_main_fragment_container_two, fragment, fragment.getClass().getName());
         fragmentTransaction.addToBackStack(fragment.getClass().getName());
         fragmentTransaction.commit();
     }

@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
     @Override
     public void studentSelected(String studentId) {
         navigator.displayStudentDetailsFragment(studentId);
-        setStudentDetailsFab();
+        setStudentDetailsFab(studentId);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
         fab.removeButton(addFileFab);
     }
 
-    private void setStudentDetailsFab() {
+    private void setStudentDetailsFab(final String studentId) {
         addScheduleFab = new FloatingActionButton(this);
         addScheduleFab.setIcon(R.drawable.ic_schedule_white_24px);
         addScheduleFab.setSize(FloatingActionButton.SIZE_MINI);
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
             @Override
             public void onClick(View view) {
                 fab.collapse();
-                navigator.displayAddActivity();
+                navigator.displayCreateActivity(CreateActivity.FRAGMENT_CREATE_SCHEDULE, studentId);
             }
         });
         fab.addButton(addScheduleFab);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
             @Override
             public void onClick(View view) {
                 fab.collapse();
-                navigator.displayAddActivity();
+                navigator.displayCreateActivity(CreateActivity.FRAGMENT_CREATE_FILE, studentId);
             }
         });
         fab.addButton(addFileFab);

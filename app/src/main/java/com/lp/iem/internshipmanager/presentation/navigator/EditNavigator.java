@@ -54,7 +54,7 @@ public class EditNavigator implements BaseActivityLifeCycle {
     }
 
     public Fragment getCurrentFragment() {
-        return fragmentManager.findFragmentById(R.id.main_activity_fragment_container);
+        return fragmentManager.findFragmentById(R.id.activity_edit_fragment_container);
     }
 
     private void fragmentTransactionReplace(Fragment fragment) {

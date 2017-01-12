@@ -7,7 +7,7 @@
     android:fitsSystemWindows="true">
 
     <FrameLayout
-        android:id="@+id/main_activity_fragment_container"
+        android:id="@+id/activity_main_fragment_container_one"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="@dimen/bbn_bottom_navigation_height"/>
@@ -29,7 +29,7 @@
         app:fab_addButtonColorNormal="@color/colorAccent"
         app:fab_addButtonPlusIconColor="@color/white"
         app:fab_addButtonColorPressed="@color/colorPrimaryDark"
-        app:layout_anchor="@id/main_activity_fragment_container"
+        app:layout_anchor="@id/activity_main_fragment_container_one"
         app:layout_anchorGravity="bottom|right|end"
         android:layout_marginEnd="@dimen/default_material_margin_normal"
         android:layout_marginBottom="@dimen/default_material_margin_very_huge"
