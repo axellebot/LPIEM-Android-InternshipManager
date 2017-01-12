@@ -1,4 +1,4 @@
-package com.lp.iem.internshipmanager.presentation;
+package com.lp.iem.internshipmanager;
 
 import android.app.Application;
 

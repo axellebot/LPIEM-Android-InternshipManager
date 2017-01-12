@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.support.v4.app.ActivityCompat;
 
 import com.lp.iem.internshipmanager.data.repository.DataRepository;
-import com.lp.iem.internshipmanager.presentation.IMApplication;
+import com.lp.iem.internshipmanager.IMApplication;
 import com.lp.iem.internshipmanager.presentation.model.Student;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
 import com.lp.iem.internshipmanager.presentation.ui.listener.ClickCallbackListener;
