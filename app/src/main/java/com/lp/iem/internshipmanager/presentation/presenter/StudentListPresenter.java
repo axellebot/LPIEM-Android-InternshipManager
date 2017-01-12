@@ -62,7 +62,7 @@ public class StudentListPresenter implements BaseActivityLifeCycle {
     }
 
     public void getStudentList() {
-        dataRepository.getStudents()
+        dataRepository.getStudentList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<Student>>() {
