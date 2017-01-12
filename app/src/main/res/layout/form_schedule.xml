@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <Spinner
+        android:id="@+id/form_schedule_input_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_material_margin_big" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/form_schedule_input_label_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_material_margin_big">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/form_schedule_input_label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/form_schedule_input_label_hint" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/form_schedule_input_description_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_material_margin_big">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/form_schedule_input_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_description_blue_grey_24dp"
+            android:hint="@string/form_schedule_input_description_hint"
+            android:inputType="textMultiLine"
+            android:maxLength="@string/form_schedule_imput_description_max_lenght" />
+
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/form_schedule_input_datetime_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_material_margin_big">
+
+        <android.support.design.widget.TextInputEditText
+            android:id="@+id/form_schedule_input_datetime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableEnd="@drawable/ic_access_time_blue_grey_24dp"
+            android:hint="@string/form_schedule_input_datetime_hint"
+            android:inputType="datetime" />
+
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>

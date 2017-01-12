@@ -8,4 +8,11 @@
     <string name="part_files">Documents</string>
 
     <string name="student_details_about_title">"À propose de "</string>
+
+    <!--Form Schedule-->
+    <string name="form_schedule_input_label_hint">Label</string>
+    <string name="form_schedule_input_description_hint">Description</string>
+    <string name="form_schedule_imput_description_max_lenght">250</string>
+    <string name="form_schedule_input_datetime_hint">Date</string>
+
 </resources>
