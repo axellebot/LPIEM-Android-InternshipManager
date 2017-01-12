@@ -15,4 +15,8 @@
     <string name="form_schedule_imput_description_max_lenght">250</string>
     <string name="form_schedule_input_datetime_hint">Date</string>
 
+    <!--Form File-->
+    <string name="form_file_input_label_hint">File name</string>
+    <string name="form_file_input_description_hint">Description</string>
+
 </resources>
