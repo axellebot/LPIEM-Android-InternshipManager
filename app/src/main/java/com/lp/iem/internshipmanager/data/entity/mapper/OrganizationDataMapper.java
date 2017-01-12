@@ -22,4 +22,25 @@ public class OrganizationDataMapper {
         organization.setStudentId(organizationEntity.student.id);
         return organization;
     }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<OrganizationEntity> transformReverse(List<Organization> organizationList) {
+        List<OrganizationEntity> organizationEntityList = new ArrayList<>();
+        for (Organization organization : organizationList) {
+            organizationEntityList.add(transformReverse(organization));
+        }
+        return organizationEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public OrganizationEntity transformReverse(Organization organization) {
+        OrganizationEntity organizationEntity = new OrganizationEntity();
+        organizationEntity.id = organization.getId();
+        organizationEntity.name = organization.getName();
+        return organizationEntity;
+    }
 }

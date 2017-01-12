@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WebsiteDataMapper {
-    public List<Website> transform(List<WebsiteEntity> websiteEnityList) {
+    public List<Website> transform(List<WebsiteEntity> websiteEntityList) {
         List<Website> websiteList = new ArrayList<>();
-        for (WebsiteEntity websiteEntity : websiteEnityList) {
+        for (WebsiteEntity websiteEntity : websiteEntityList) {
             websiteList.add(transform(websiteEntity));
         }
         return websiteList;
@@ -20,5 +20,27 @@ public class WebsiteDataMapper {
         website.setId(websiteEntity.id);
         website.setStudentId(websiteEntity.student.id);
         return website;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<WebsiteEntity> transformReverse(List<Website> websiteList) {
+        List<WebsiteEntity> websiteEntityList = new ArrayList<>();
+        for (Website website : websiteList) {
+            websiteEntityList.add(transformReverse(website));
+        }
+        return websiteEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public WebsiteEntity transformReverse(Website website) {
+        WebsiteEntity websiteEntity = new WebsiteEntity();
+        websiteEntity.id = website.getId();
+        websiteEntity.label = website.getLabel();
+        websiteEntity.value = website.getValue();
+        return websiteEntity;
     }
 }

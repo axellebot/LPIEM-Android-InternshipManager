@@ -24,4 +24,27 @@ public class StudentDataMapper {
 
         return student;
     }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<StudentEntity> transformReverse(List<Student> studentList) {
+        List<StudentEntity> studentEntityList = new ArrayList<>();
+        for (Student student : studentList) {
+            studentEntityList.add(transformReverse(student));
+        }
+        return studentEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public StudentEntity transformReverse(Student student) {
+        StudentEntity studentEntity = new StudentEntity();
+        studentEntity.id = student.getId();
+        studentEntity.fname = student.getFname();
+        studentEntity.lname = student.getLname();
+        studentEntity.notes = student.getNotes();
+        return studentEntity;
+    }
 }

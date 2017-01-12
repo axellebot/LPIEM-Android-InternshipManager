@@ -22,4 +22,26 @@ public class FileDataMapper {
         file.setStudentId(fileEntity.student.id);
         return file;
     }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<FileEntity> transformRevers(List<File> fileList) {
+        List<FileEntity> fileEntityList = new ArrayList<>();
+        for (File file : fileList) {
+            fileEntityList.add(transformReverse(file));
+        }
+        return fileEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public FileEntity transformReverse(File file) {
+        FileEntity fileEntity = new FileEntity();
+        fileEntity.id = file.getId();
+        fileEntity.filePath = file.getAbsolutePath();
+        fileEntity.description = file.getDescription();
+        return fileEntity;
+    }
 }

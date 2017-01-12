@@ -24,4 +24,27 @@ public class ScheduleDataMapper {
         schedule.setStudentId(scheduleEntity.student.id);
         return schedule;
     }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<ScheduleEntity> transformReverse(List<Schedule> scheduleList) {
+        List<ScheduleEntity> scheduleEntityList = new ArrayList<>();
+        for (Schedule schedule : scheduleList) {
+            scheduleEntityList.add(transformReverse(schedule));
+        }
+        return scheduleEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public ScheduleEntity transformReverse(Schedule schedule) {
+        ScheduleEntity scheduleEntity = new ScheduleEntity();
+        scheduleEntity.id = schedule.getId();
+        scheduleEntity.label = schedule.getLabel();
+        scheduleEntity.description = schedule.getDescription();
+        scheduleEntity.date = schedule.getDate();
+        return scheduleEntity;
+    }
 }

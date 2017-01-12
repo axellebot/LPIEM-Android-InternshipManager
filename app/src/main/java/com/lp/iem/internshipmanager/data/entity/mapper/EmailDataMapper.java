@@ -23,4 +23,26 @@ public class EmailDataMapper {
         email.setStudentId(emailEntity.student.id);
         return email;
     }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<EmailEntity> transformRevers(List<Email> emailList) {
+        List<EmailEntity> emailEntityList = new ArrayList<>();
+        for (Email email : emailList) {
+            emailEntityList.add(transformReverse(email));
+        }
+        return emailEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public EmailEntity transformReverse(Email email) {
+        EmailEntity emailEntity = new EmailEntity();
+        emailEntity.id = email.getId();
+        emailEntity.label = email.getLabel();
+        emailEntity.value = email.getValue();
+        return emailEntity;
+    }
 }

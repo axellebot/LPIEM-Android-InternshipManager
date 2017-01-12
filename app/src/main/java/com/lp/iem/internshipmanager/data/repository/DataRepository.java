@@ -174,22 +174,13 @@ public class DataRepository {
      * CREATE |UPDATE
      **************************/
     public Observable<Student> saveStudent(@NonNull Student student) {
-        StudentEntity studentEntity = new StudentEntity();
-        studentEntity.id = student.getId();
-        studentEntity.fname = student.getFname();
-        studentEntity.lname = student.getLname();
-        studentEntity.notes = student.getNotes();
-
+        StudentEntity studentEntity = studentDataMapper.transformReverse(student);
         studentEntity.save();
-
         return getStudent(student.getId());
     }
 
     public Observable<Address> saveAddress(@NonNull Address address) {
-        AddressEntity addressEntity = new AddressEntity();
-        addressEntity.id = address.getId();
-        addressEntity.label = address.getLabel();
-        addressEntity.value = address.getValue();
+        AddressEntity addressEntity = addressDataMapper.transformReverse(address);
         addressEntity.student = dbFlowManager.getStudentEntity(address.getId());
 
         addressEntity.save();
@@ -198,10 +189,7 @@ public class DataRepository {
     }
 
     public Observable<Email> saveEmail(@NonNull Email email) {
-        EmailEntity emailEntity = new EmailEntity();
-        emailEntity.id = email.getId();
-        emailEntity.label = email.getLabel();
-        emailEntity.value = email.getValue();
+        EmailEntity emailEntity = emailDataMapper.transformReverse(email);
         emailEntity.student = dbFlowManager.getStudentEntity(email.getId());
 
         emailEntity.save();
@@ -210,10 +198,7 @@ public class DataRepository {
     }
 
     public Observable<File> saveFile(@NonNull File file) {
-        FileEntity fileEntity = new FileEntity();
-        fileEntity.id = file.getId();
-        fileEntity.filePath = file.getAbsolutePath();
-        fileEntity.description = file.getDescription();
+        FileEntity fileEntity = fileDataMapper.transformReverse(file);
         fileEntity.student = dbFlowManager.getStudentEntity(file.getStudentId());
 
         fileEntity.save();
@@ -222,10 +207,7 @@ public class DataRepository {
     }
 
     public Observable<Number> saveNumber(@NonNull Number number) {
-        NumberEntity numberEntity = new NumberEntity();
-        numberEntity.id = number.getId();
-        numberEntity.label = number.getLabel();
-        numberEntity.value = number.getValue();
+        NumberEntity numberEntity = numberDataMapper.transformReverse(number);
         numberEntity.student = dbFlowManager.getStudentEntity(number.getId());
 
         numberEntity.save();
@@ -234,9 +216,7 @@ public class DataRepository {
     }
 
     public Observable<Organization> saveOrganization(@NonNull Organization organization) {
-        OrganizationEntity organizationEntity = new OrganizationEntity();
-        organizationEntity.id = organization.getId();
-        organizationEntity.name = organization.getName();
+        OrganizationEntity organizationEntity = organizationDataMapper.transformReverse(organization);
         organizationEntity.student = dbFlowManager.getStudentEntity(organization.getId());
 
         organizationEntity.save();
@@ -245,11 +225,7 @@ public class DataRepository {
     }
 
     public Observable<Schedule> saveSchedule(@NonNull Schedule schedule) {
-        ScheduleEntity scheduleEntity = new ScheduleEntity();
-        scheduleEntity.id = schedule.getId();
-        scheduleEntity.label = schedule.getLabel();
-        scheduleEntity.description = schedule.getDescription();
-        scheduleEntity.date = schedule.getDate();
+        ScheduleEntity scheduleEntity = scheduleDataMapper.transformReverse(schedule);
         scheduleEntity.student = dbFlowManager.getStudentEntity(schedule.getId());
 
         scheduleEntity.save();
@@ -258,10 +234,7 @@ public class DataRepository {
     }
 
     public Observable<Website> saveWebsite(@NonNull Website website) {
-        WebsiteEntity websiteEntity = new WebsiteEntity();
-        websiteEntity.id = website.getId();
-        websiteEntity.label = website.getLabel();
-        websiteEntity.value = website.getValue();
+        WebsiteEntity websiteEntity = websiteDataMapper.transformReverse(website);
         websiteEntity.student = dbFlowManager.getStudentEntity(website.getId());
 
         websiteEntity.save();

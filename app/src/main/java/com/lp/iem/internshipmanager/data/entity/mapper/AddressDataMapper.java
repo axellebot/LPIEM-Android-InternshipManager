@@ -23,4 +23,20 @@ public class AddressDataMapper {
         address.setStudentId(addressEntity.student.id);
         return address;
     }
+
+    public List<AddressEntity> transformReverse(List<Address> addressList) {
+        List<AddressEntity> addressEntityList = new ArrayList<>();
+        for (Address address : addressList) {
+            addressEntityList.add(transformReverse(address));
+        }
+        return addressEntityList;
+    }
+
+    public AddressEntity transformReverse(Address address) {
+        AddressEntity addressEntity = new AddressEntity();
+        addressEntity.id = address.getId();
+        addressEntity.label = address.getLabel();
+        addressEntity.value = address.getValue();
+        return addressEntity;
+    }
 }

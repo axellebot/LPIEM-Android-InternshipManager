@@ -23,4 +23,26 @@ public class NumberDataMapper {
         number.setStudentId(emailEntity.student.id);
         return number;
     }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public List<NumberEntity> transformReverse(List<Number> numberList) {
+        List<NumberEntity> numberEntityList = new ArrayList<>();
+        for (Number number : numberList) {
+            numberEntityList.add(transformReverse(number));
+        }
+        return numberEntityList;
+    }
+
+    /**
+     * Does not take into account the relationships
+     */
+    public NumberEntity transformReverse(Number number) {
+        NumberEntity numberEntity = new NumberEntity();
+        numberEntity.id = number.getId();
+        numberEntity.label = number.getLabel();
+        numberEntity.value = number.getValue();
+        return numberEntity;
+    }
 }
