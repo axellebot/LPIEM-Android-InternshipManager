@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.widget.FrameLayout;
 
 import com.lp.iem.internshipmanager.R;
 import com.lp.iem.internshipmanager.presentation.ui.activity.BaseActivityLifeCycle;
@@ -27,6 +28,8 @@ public class MainNavigator implements BaseActivityLifeCycle {
     private Activity activity;
 
     private StudentListFragment studentListFragment;
+
+    private String currentStudentId = null;
 
     public MainNavigator(Activity activity) {
         this.activity = activity;
@@ -58,14 +61,13 @@ public class MainNavigator implements BaseActivityLifeCycle {
 
     }
 
-    public void onBackPressed(){
+    public void onBackPressed() {
         if(currentFragmentId == FRAGMENT_STUDENT_DETAILS) {
-            if(getCurrentFragment() instanceof StudentDetailsFragment && !((StudentDetailsFragment) getCurrentFragment()).isItemIsFocused()) {
-                fragmentManager.popBackStack();
-                currentFragmentId = FRAGMENT_STUDENT_LIST;
-                studentListFragment.setActionBar();
-                ((MainActivity) activity).onStudentDetailsBackPressed();
-            }
+            fragmentManager.popBackStack();
+            studentListFragment.setActionBar();
+            currentStudentId = null;
+            ((MainActivity) activity).onStudentDetailsBackPressed();
+            currentFragmentId = FRAGMENT_STUDENT_LIST;
         }
     }
 
@@ -81,19 +83,24 @@ public class MainNavigator implements BaseActivityLifeCycle {
     }
 
     public void displayStudentDetailsFragment(String studentId) {
+        this.currentStudentId = studentId;
         StudentDetailsFragment studentDetailsFragment = StudentDetailsFragment.newInstance(studentId);
         if(currentFragmentId != FRAGMENT_STUDENT_DETAILS) {
-            if (isTabletLandscape()) {
+            if (isLandscape()) {
                 fragmentTransactionAddOnSecond(studentDetailsFragment);
             } else {
                 fragmentTransactionAdd(studentDetailsFragment);
             }
         } else {
-            if (isTabletLandscape()) {
+            if (isLandscape()) {
                 fragmentTransactionReplaceOnSecond(studentDetailsFragment);
             }
         }
         currentFragmentId = FRAGMENT_STUDENT_DETAILS;
+    }
+
+    public void displayAddActivity() {
+        // todo run add add activity with add schedule/file fragment
     }
 
     private Fragment getCurrentFragment() {
@@ -127,8 +134,7 @@ public class MainNavigator implements BaseActivityLifeCycle {
         fragmentTransaction.commit();
     }
 
-    private boolean isTabletLandscape() {
-        return /*(activity.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) >= Configuration.SCREENLAYOUT_SIZE_LARGE &&*/
-                (activity.getResources().getConfiguration().orientation) == Configuration.ORIENTATION_LANDSCAPE;
+    private boolean isLandscape() {
+        return activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
     }
 }

@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
             @Override
             public void onClick(View view) {
                 fab.collapse();
-                // todo run add add activity with add schedule fragment
+                navigator.displayAddActivity();
             }
         });
         fab.addButton(addScheduleFab);
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements NavigationListene
             @Override
             public void onClick(View view) {
                 fab.collapse();
-                // todo run add add activity with add file fragment
+                navigator.displayAddActivity();
             }
         });
         fab.addButton(addFileFab);
