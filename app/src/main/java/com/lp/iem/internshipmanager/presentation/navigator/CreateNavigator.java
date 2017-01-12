@@ -59,13 +59,13 @@ public class CreateNavigator implements BaseActivityLifeCycle {
 
     private void fragmentTransactionReplace(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.activity_add_fragment_container, fragment, fragment.getClass().getName());
+        fragmentTransaction.replace(R.id.activity_create_fragment_container, fragment, fragment.getClass().getName());
         fragmentTransaction.commit();
     }
 
     private void fragmentTransactionAdd(Fragment fragment) {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.activity_add_fragment_container, fragment, fragment.getClass().getName());
+        fragmentTransaction.add(R.id.activity_create_fragment_container, fragment, fragment.getClass().getName());
         fragmentTransaction.addToBackStack(fragment.getClass().getName());
         fragmentTransaction.commit();
     }
