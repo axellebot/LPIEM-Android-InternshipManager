@@ -176,11 +176,72 @@ public class DataRepository {
     public Observable<Student> saveStudent(@NonNull Student student) {
         StudentEntity studentEntity = studentDataMapper.transformReverse(student);
         studentEntity.save();
+
+        //make relationships
+        for (Address address : student.getAddressList()) {
+            AddressEntity addressEntity = addressDataMapper.transformReverse(address);
+
+            //make relationship
+            addressEntity.student = studentEntity;
+            addressEntity.save();
+        }
+
+
+        for (Email email : student.getEmailList()) {
+            EmailEntity emailEntity = emailDataMapper.transformReverse(email);
+
+            //make relationship
+            emailEntity.student = studentEntity;
+            emailEntity.save();
+        }
+
+        for (File file : student.getFileList()) {
+            FileEntity fileEntity = fileDataMapper.transformReverse(file);
+
+            //make relationship
+            fileEntity.student = studentEntity;
+            fileEntity.save();
+        }
+
+        for (Number number : student.getNumberList()) {
+            NumberEntity numberEntity = numberDataMapper.transformReverse(number);
+
+            //make relationship
+            numberEntity.student = studentEntity;
+            numberEntity.save();
+        }
+
+        for (Organization organization : student.getOrganizationList()) {
+            OrganizationEntity organizationEntity = organizationDataMapper.transformReverse(organization);
+
+            //make relationship
+            organizationEntity.student = studentEntity;
+            organizationEntity.save();
+        }
+
+        for (Schedule schedule : student.getScheduleList()) {
+            ScheduleEntity scheduleEntity = scheduleDataMapper.transformReverse(schedule);
+
+            //make relationship
+            scheduleEntity.student = studentEntity;
+            scheduleEntity.save();
+        }
+
+        for (Website website : student.getWebSites()) {
+            WebsiteEntity websiteEntity = websiteDataMapper.transformReverse(website);
+
+            //make relationship
+            websiteEntity.student = studentEntity;
+            websiteEntity.save();
+        }
+
         return getStudent(student.getId());
     }
 
     public Observable<Address> saveAddress(@NonNull Address address) {
         AddressEntity addressEntity = addressDataMapper.transformReverse(address);
+
+        //make relationship
         addressEntity.student = dbFlowManager.getStudentEntity(address.getId());
 
         addressEntity.save();
@@ -190,6 +251,8 @@ public class DataRepository {
 
     public Observable<Email> saveEmail(@NonNull Email email) {
         EmailEntity emailEntity = emailDataMapper.transformReverse(email);
+
+        //make relationship
         emailEntity.student = dbFlowManager.getStudentEntity(email.getId());
 
         emailEntity.save();
@@ -199,6 +262,8 @@ public class DataRepository {
 
     public Observable<File> saveFile(@NonNull File file) {
         FileEntity fileEntity = fileDataMapper.transformReverse(file);
+
+        //make relationship
         fileEntity.student = dbFlowManager.getStudentEntity(file.getStudentId());
 
         fileEntity.save();
@@ -208,6 +273,8 @@ public class DataRepository {
 
     public Observable<Number> saveNumber(@NonNull Number number) {
         NumberEntity numberEntity = numberDataMapper.transformReverse(number);
+
+        //make relationship
         numberEntity.student = dbFlowManager.getStudentEntity(number.getId());
 
         numberEntity.save();
@@ -217,6 +284,8 @@ public class DataRepository {
 
     public Observable<Organization> saveOrganization(@NonNull Organization organization) {
         OrganizationEntity organizationEntity = organizationDataMapper.transformReverse(organization);
+
+        //make relationship
         organizationEntity.student = dbFlowManager.getStudentEntity(organization.getId());
 
         organizationEntity.save();
@@ -226,6 +295,8 @@ public class DataRepository {
 
     public Observable<Schedule> saveSchedule(@NonNull Schedule schedule) {
         ScheduleEntity scheduleEntity = scheduleDataMapper.transformReverse(schedule);
+
+        //make relationship
         scheduleEntity.student = dbFlowManager.getStudentEntity(schedule.getId());
 
         scheduleEntity.save();
@@ -235,6 +306,8 @@ public class DataRepository {
 
     public Observable<Website> saveWebsite(@NonNull Website website) {
         WebsiteEntity websiteEntity = websiteDataMapper.transformReverse(website);
+
+        //make relationship
         websiteEntity.student = dbFlowManager.getStudentEntity(website.getId());
 
         websiteEntity.save();
