@@ -13,7 +13,12 @@
     <string name="form_schedule_input_label_hint">Label</string>
     <string name="form_schedule_input_description_hint">Description</string>
     <string name="form_schedule_imput_description_max_lenght">250</string>
-    <string name="form_schedule_input_datetime_hint">Date</string>
+    <string name="form_schedule_input_start_datetime_label">From</string>
+    <string name="form_schedule_input_end_datetime_label">To</string>
+    <string name="form_schedule_spinner_start_date_hint">Start Date</string>
+    <string name="form_schedule_spinner_start_time_hint">Start Time</string>
+    <string name="form_schedule_spinner_end_date_hint">End Date</string>
+    <string name="form_schedule_spinner_end_time_hint">End Time</string>
 
     <!--Form File-->
     <string name="form_file_input_label_hint">File name</string>
